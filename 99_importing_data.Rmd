@@ -1,0 +1,38 @@
+# Quick workflow
+
+
+## Importing data
+
+Let's get started with importing our raw data into R. 
+
+The easiest way is to use the `import_files()` function. Its purpose is to read any kind of raw data and store it in the `.imports` list. If no argument is supplied for `files`, the function opens a separate window to manually specify the file/s.
+
+
+
+
+## Organize datasets
+
+Once all raw files are loaded, we need to extract and organize the useful data into the `.datasets` list. Each list entry contains one dataset from one imported raw file. 
+
+```
+new_dataset(import = .imports[["Hjv_proteomics_DEN_proteinGroups"]],
+            name = "DEN",
+            identifier = "Protein.IDs" ,
+            data.types = c("Gene.names",
+                           "Protein.names",
+                           "LFQ.intensity",
+                           "Only.identified.by.site",
+                           "Potential.contaminant",
+                           "Reverse"))
+```
+
+
+
+
+
+
+
+
+
+
+

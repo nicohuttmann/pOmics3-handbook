@@ -1,0 +1,55 @@
+# R packages
+
+
+>"R packages are collections of functions and data sets developed by the community. They increase the power of R by improving existing base R functionalities, or by adding new ones."^[https://www.datacamp.com/community/tutorials/r-packages-guide] 
+
+Basically, R packages are nothing but collections of functions bundled together in a way that makes sense. Like different cookbooks that only contain recipes for a particular kind of food. They can be installed from many different sources which will be explored below. 
+
+## From CRAN
+
+[The Comprehensive R Archive Network](What are R and CRAN?) (CRAN) package repository features 18,000+ R packages. Here's the list of [Available CRAN Packages By Name](https://cran.r-project.org/web/packages/available_packages_by_name.html). Most general purpose packages can be found here, however due to reasons, some packages are only available from other sources. 
+
+As a first example, we will download the [tidyverse](https://www.tidyverse.org/), a collection of R packages for data science. 
+
+>"The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."
+
+We can install packages from CRAN with the `install.packages()` function like this:
+```{r install tidyR, eval=FALSE}
+install.packages("tidyverse")
+```
+
+Note, that we can also download more than one package at once using a vector (`c()`) containing all package names:
+```{r install more, eval=FALSE}
+install.packages(c("BiocManager", "devtools"))
+```
+
+`BiocManager` as well as `devtools` will be used in the following to download R packages from other sources.
+
+
+## From Bioconductor
+
+The [Bioconductor](https://bioconductor.org/) is a collection of R packages for bioinformatics purposes. The first packages we will need from the Bioconductor will be downloaded with the `install()` function from the `BiocManager` package: 
+```{r bioc, eval=FALSE, message=F}
+BiocManager::install(c("fgsea",
+                       "org.Hs.eg.db"
+                       "UniProt.ws"))
+```
+
+
+
+## From GitHub and others sources
+
+Another important source of R packages is GitHub. GitHub is not just the place where most R packages are being developed before they are put to repositories such as CRAN or Bioconductor, many other packages including the `pOmics` packages can be installed from it as well. :)
+
+Let's do it with the `install_github()` function from `devtools`:
+```{r install pOmics, eval=FALSE}
+devtools::install_github("nicohuttmann/pOmics3")
+```
+
+
+There are some other sources for R packages, which we want to use. Here, we are downloading the `disgenet2r` package to query the [DisGeNET](https://www.disgenet.org/) database for gene disease associations:
+```{r install disgenet2r, eval=FALSE}
+devtools::install_bitbucket("ibi_group/disgenet2r")
+```
+
+

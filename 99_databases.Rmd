@@ -1,0 +1,28 @@
+# Working with databases for functional enrichment
+
+
+
+
+## MSigDB database
+
+The [Molecular Signatures Database](https://www.gsea-msigdb.org/gsea/msigdb/) (MSigDB) database provide curated gene sets for different applications. It is organized in 9 major collections.
+
+
+
+
+There is a number of functions provided by the [msigdbr](https://cran.r-project.org/web/packages/msigdbr/vignettes/msigdbr-intro.html) package which are implemented and supplemented by the pOmics package.
+
+__msigdbr__
+
+* `msigdbr()`: Retrieve gene sets
+* `msigdbr_species()`: View available species
+* `msigdbr_collections()`: View available collections
+
+
+__pOmics__
+
+* setup_MSigDB()
+* 
+
+
+

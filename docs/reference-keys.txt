@@ -1,0 +1,16 @@
+introduction
+ressources
+acknowledgements
+r-and-rstudio
+install-the-r-language
+install-rstudio
+r-packages
+from-cran
+from-bioconductor
+from-github-and-others-sources
+version-control-with-git-and-github
+headstart-into-git-and-github-with-rstudio
+basic-github-routine
+common-problems
+too-large-files
+gitignore-does-not-instantly-work

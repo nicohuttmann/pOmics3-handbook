@@ -1,0 +1,7 @@
+# (PART\*) Getting started {-}
+
+# Introduction {-}
+
+
+The following chapters will ensure that all necessary software is installed so you can start working with R. First, we will install R and RStudio. Working with R heavily depends on making use of various packages freely available, which we will learn from different sources. To complete our repertoire of necessary tools for data science, we will learn to use Git and GitHub for seamless collaboration and version control.
+

@@ -1,0 +1,14 @@
+# Data handling
+
+
+
+
+
+
+Why no rownames?
+
+[tweet](https://twitter.com/hadleywickham/status/1017562721456275456)
+
+[explanation](https://adv-r.hadley.nz/vectors-chap.html#rownames)
+
+

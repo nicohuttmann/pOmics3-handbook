@@ -1,0 +1,11 @@
+bookdown::gitbook:
+  css: style.css
+  toc_depth: 1
+  config:
+    toc:
+      collapse: sections
+      scroll_highlight: no
+      before: |
+        <li><a href="./">pOmics3 Handbook</a></li>
+    download: ["pdf", "epub"]
+

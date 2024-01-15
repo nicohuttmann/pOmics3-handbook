@@ -1,0 +1,21 @@
+book_filename: "pOmics-guide"
+language:
+  ui:
+    chapter_name: ""
+delete_merged_file: true
+output_dir: "docs"
+
+rmd_files: [
+
+  "index.Rmd",
+
+  "01_intro.Rmd",
+
+  "02_intro.Rmd",
+  "02_R-and-RStudio.Rmd",
+  "02_R-packages.Rmd",
+  "02_github.Rmd",
+
+  "03_overview-pOmics.Rmd"
+
+  ]

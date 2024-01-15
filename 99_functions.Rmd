@@ -1,0 +1,55 @@
+# Code snippets for quick analysis
+
+hi
+
+
+## Summary on protein count
+
+
+
+
+```
+# 
+data_ <- get_data_(data.name = "Peptides", name = "Peptides") %>%
+  # 
+  eval_data(expr = x > 0, input = "Peptides") %>% 
+  #
+  put_data_(data.name = "LFQ.intensity", name = "LFQ.intensity") %>% 
+  #
+  eval_data(expr = x > 0, input = "LFQ.intensity") %>% 
+  #
+  do_count_id_quant()
+
+
+
+```
+
+
+
+## Protein expression analysis
+
+
+
+
+
+
+
+
+
+
+
+## Correlation matrix analysis
+
+Correlation matrix analysis is a powerful tool to understand the composition of a 
+
+
+```r 
+h
+
+```
+
+
+
+
+
+

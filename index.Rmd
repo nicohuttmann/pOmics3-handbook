@@ -1,0 +1,24 @@
+---
+title: "pOmics3: Functional proteomics Data Analysis in R"
+author: "Nico Hüttmann"
+site: bookdown::bookdown_site
+documentclass: book
+github-repo: nicohuttmann/pOmics-guide
+---
+
+# (PART\*) Table of Contents {-}
+
+# Preface {-}
+
+Welcome! This handbook is a reference guide to use the pOmics3 R package for proteomics data analysis. Yes, it's the third version of an old idea - alle guten Dinge sind 3, oder? For reasons, I decided to rethink the way I analyze data at the beginning of my PhD. It's basically a collection of ideas, workflows and ideas for myself, which I look up every other time I do a new analysis.
+
+
+Main features:
+
+-   Framework to load, handle and analyze proteomics data
+-   [tidyverse](https://www.tidyverse.org/) friendly
+-   Statistical analysis of qualitative and quantitative data
+-   Functional enrichment analysis via [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
+-   [ggplot2](https://ggplot2.tidyverse.org/), for publication-quality figures
+-   [plotly](https://plotly.com/r/), for interactive data exploration
+
