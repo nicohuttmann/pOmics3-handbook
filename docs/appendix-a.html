@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | pOmics3: Functional Proteomics Data Analysis in R</title>
-  <meta name="description" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <title>7 Appendix A | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="7 Appendix A | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta property="og:title" content="7 Appendix A | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="7 Appendix A | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-1.html"/>
+<link rel="prev" href="project-setup.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -169,28 +169,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Welcome to the pOmics3 Handbook!</p>
-<div id="ressources" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Ressources<a href="introduction.html#ressources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is a brief listing of resources for proteomics data analysis and R programming on which all following content is based on:</p>
-<ul>
-<li>More to come</li>
-</ul>
-</div>
-<div id="acknowledgements" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Acknowledgements<a href="introduction.html#acknowledgements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Brief thanks to the people which were involved in the early developments of these packages (<a href="https://nicohuttmann.github.io/pOmics-handbook/introduction.html">longer version</a>):</p>
-<ul>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/maxim-berezovski.html">Dr. Maxim Berezovski</a>: Freedom to try and learn different solutions to proteomics problems.</li>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/team/current-lab-members/zoran-minic.html">Dr. Zoran Minic</a>: Challenges to improve creativity and efficiency in proteomics data analysis.</li>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/team/">Abdullah Khraibah</a>: Motivation to share analysis code and functions.</li>
-<li><a href="https://www.embl.org/groups/zimmermann-kogadeeva/members/">Daniel Torka</a>: Recommended tidyverse and R Markdown long before I started appreciating them. Thanks Junior!</li>
-</ul>
+<div id="appendix-a" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Appendix A<a href="appendix-a.html#appendix-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rename-files-based-on-sub-folders" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Rename files based on sub folders<a href="appendix-a.html#rename-files-based-on-sub-folders" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="appendix-a.html#cb18-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
+<span id="cb18-2"><a href="appendix-a.html#cb18-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
+<span id="cb18-3"><a href="appendix-a.html#cb18-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
+<span id="cb18-4"><a href="appendix-a.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="appendix-a.html#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="appendix-a.html#cb18-6" tabindex="-1"></a><span class="fu">names</span>(files) <span class="ot">&lt;-</span> files <span class="sc">%&gt;%</span> </span>
+<span id="cb18-7"><a href="appendix-a.html#cb18-7" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>, <span class="st">&quot;&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-8"><a href="appendix-a.html#cb18-8" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;_&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-9"><a href="appendix-a.html#cb18-9" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;Data_&quot;</span>, <span class="st">&quot;&quot;</span>, .)</span>
+<span id="cb18-10"><a href="appendix-a.html#cb18-10" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="appendix-a.html#cb18-11" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
+<span id="cb18-12"><a href="appendix-a.html#cb18-12" tabindex="-1"></a><span class="fu">.cat_character_named</span>(files)</span>
+<span id="cb18-13"><a href="appendix-a.html#cb18-13" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="appendix-a.html#cb18-14" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
 
 </div>
 </div>
+
+
+
+
 
 
 
@@ -199,8 +202,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="project-setup.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

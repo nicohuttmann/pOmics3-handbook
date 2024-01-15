@@ -1,5 +1,8 @@
 # R packages
 
+```{r}
+knitr::opts_chunk$set(eval = FALSE)
+```
 
 >"R packages are collections of functions and data sets developed by the community. They increase the power of R by improving existing base R functionalities, or by adding new ones."^[https://www.datacamp.com/community/tutorials/r-packages-guide] 
 
@@ -29,9 +32,9 @@ install.packages(c("BiocManager", "devtools"))
 ## From Bioconductor
 
 The [Bioconductor](https://bioconductor.org/) is a collection of R packages for bioinformatics purposes. The first packages we will need from the Bioconductor will be downloaded with the `install()` function from the `BiocManager` package: 
-```{r bioc, eval=FALSE, message=F}
+```{r bioc, message=F}
 BiocManager::install(c("fgsea",
-                       "org.Hs.eg.db"
+                       "org.Hs.eg.db",
                        "UniProt.ws"))
 ```
 
@@ -39,16 +42,16 @@ BiocManager::install(c("fgsea",
 
 ## From GitHub and others sources
 
-Another important source of R packages is GitHub. GitHub is not just the place where most R packages are being developed before they are put to repositories such as CRAN or Bioconductor, many other packages including the `pOmics` packages can be installed from it as well. :)
+Another important source of R packages is GitHub. GitHub is not just the place where most R packages are being developed before they are put to repositories such as CRAN or Bioconductor, many other packages including the `pOmics3` packages can be installed from it as well. :)
 
-Let's do it with the `install_github()` function from `devtools`:
-```{r install pOmics, eval=FALSE}
+Here is an example with the `install_github()` function from the `devtools` package which will be further described in [Setup pOmics3](#02_setup-pOmics3).
+```{r install pOmics}
 devtools::install_github("nicohuttmann/pOmics3")
 ```
 
 
 There are some other sources for R packages, which we want to use. Here, we are downloading the `disgenet2r` package to query the [DisGeNET](https://www.disgenet.org/) database for gene disease associations:
-```{r install disgenet2r, eval=FALSE}
+```{r install disgenet2r}
 devtools::install_bitbucket("ibi_group/disgenet2r")
 ```
 

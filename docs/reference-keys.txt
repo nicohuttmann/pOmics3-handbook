@@ -14,3 +14,11 @@ basic-github-routine
 common-problems
 too-large-files
 gitignore-does-not-instantly-work
+setup-pomics3
+project-setup
+scripts
+data-structure
+packages
+import-data
+appendix-a
+rename-files-based-on-sub-folders

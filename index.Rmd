@@ -1,5 +1,5 @@
 ---
-title: "pOmics3: Functional proteomics Data Analysis in R"
+title: "pOmics3: Functional Proteomics Data Analysis in R"
 author: "Nico Hüttmann"
 site: bookdown::bookdown_site
 documentclass: book
@@ -10,7 +10,9 @@ github-repo: nicohuttmann/pOmics-guide
 
 # Preface {-}
 
-Welcome! This handbook is a reference guide to use the pOmics3 R package for proteomics data analysis. Yes, it's the third version of an old idea - alle guten Dinge sind 3, oder? For reasons, I decided to rethink the way I analyze data at the beginning of my PhD. It's basically a collection of ideas, workflows and ideas for myself, which I look up every other time I do a new analysis.
+Welcome! This handbook is a reference guide to use the pOmics3 R package for proteomics data analysis. Yes, it's the third version of an old idea - alle guten Dinge sind 3!
+
+For reasons, I decided to rethink the way I analyze data at the beginning of my PhD. It's basically a collection of ideas, workflows and ideas for myself, which I look up every other time I start a new analysis.
 
 
 Main features:

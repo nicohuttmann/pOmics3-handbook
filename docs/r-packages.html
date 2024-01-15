@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 R packages | pOmics3: Functional proteomics Data Analysis in R</title>
-  <meta name="description" content="3 R packages | pOmics3: Functional proteomics Data Analysis in R" />
+  <title>3 R packages | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="3 R packages | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 R packages | pOmics3: Functional proteomics Data Analysis in R" />
+  <meta property="og:title" content="3 R packages | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 R packages | pOmics3: Functional proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="3 R packages | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -147,7 +147,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a></li>
 <li class="chapter" data-level="3" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>3</b> R packages</a></li>
 <li class="chapter" data-level="4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>4</b> Version control with Git and GitHub</a></li>
-<li class="part"><span><b>Overview pOmics</b></span></li>
+<li class="chapter" data-level="5" data-path="setup-pomics3.html"><a href="setup-pomics3.html"><i class="fa fa-check"></i><b>5</b> Setup pOmics3</a></li>
+<li class="part"><span><b>Data Analysis Basics</b></span></li>
+<li class="chapter" data-level="6" data-path="project-setup.html"><a href="project-setup.html"><i class="fa fa-check"></i><b>6</b> Project setup</a></li>
+<li class="part"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="7" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a></li>
 </ul>
 
       </nav>
@@ -157,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">pOmics3: Functional proteomics Data Analysis in R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">pOmics3: Functional Proteomics Data Analysis in R</a>
           </h1>
         </div>
 
@@ -167,6 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-packages" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> R packages<a href="r-packages.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-packages.html#cb1-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <blockquote>
 <p>“R packages are collections of functions and data sets developed by the community. They increase the power of R by improving existing base R functionalities, or by adding new ones.”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 </blockquote>
@@ -179,25 +184,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>“The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.”</p>
 </blockquote>
 <p>We can install packages from CRAN with the <code>install.packages()</code> function like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-packages.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r-packages.html#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Note, that we can also download more than one package at once using a vector (<code>c()</code>) containing all package names:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r-packages.html#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="st">&quot;devtools&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-packages.html#cb3-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="st">&quot;devtools&quot;</span>))</span></code></pre></div>
 <p><code>BiocManager</code> as well as <code>devtools</code> will be used in the following to download R packages from other sources.</p>
 </div>
 <div id="from-bioconductor" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> From Bioconductor<a href="r-packages.html#from-bioconductor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <a href="https://bioconductor.org/">Bioconductor</a> is a collection of R packages for bioinformatics purposes. The first packages we will need from the Bioconductor will be downloaded with the <code>install()</code> function from the <code>BiocManager</code> package:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-packages.html#cb3-1" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;fgsea&quot;</span>,</span>
-<span id="cb3-2"><a href="r-packages.html#cb3-2" tabindex="-1"></a>                       <span class="st">&quot;org.Hs.eg.db&quot;</span></span>
-<span id="cb3-3"><a href="r-packages.html#cb3-3" tabindex="-1"></a>                       <span class="st">&quot;UniProt.ws&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r-packages.html#cb4-1" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;fgsea&quot;</span>,</span>
+<span id="cb4-2"><a href="r-packages.html#cb4-2" tabindex="-1"></a>                       <span class="st">&quot;org.Hs.eg.db&quot;</span>,</span>
+<span id="cb4-3"><a href="r-packages.html#cb4-3" tabindex="-1"></a>                       <span class="st">&quot;UniProt.ws&quot;</span>))</span></code></pre></div>
 </div>
 <div id="from-github-and-others-sources" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> From GitHub and others sources<a href="r-packages.html#from-github-and-others-sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Another important source of R packages is GitHub. GitHub is not just the place where most R packages are being developed before they are put to repositories such as CRAN or Bioconductor, many other packages including the <code>pOmics</code> packages can be installed from it as well. :)</p>
-<p>Let’s do it with the <code>install_github()</code> function from <code>devtools</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r-packages.html#cb4-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;nicohuttmann/pOmics3&quot;</span>)</span></code></pre></div>
+<p>Another important source of R packages is GitHub. GitHub is not just the place where most R packages are being developed before they are put to repositories such as CRAN or Bioconductor, many other packages including the <code>pOmics3</code> packages can be installed from it as well. :)</p>
+<p>Here is an example with the <code>install_github()</code> function from the <code>devtools</code> package which will be further described in <a href="#id_02_setup-pOmics3">Setup pOmics3</a>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-packages.html#cb5-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;nicohuttmann/pOmics3&quot;</span>)</span></code></pre></div>
 <p>There are some other sources for R packages, which we want to use. Here, we are downloading the <code>disgenet2r</code> package to query the <a href="https://www.disgenet.org/">DisGeNET</a> database for gene disease associations:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-packages.html#cb5-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_bitbucket</span>(<span class="st">&quot;ibi_group/disgenet2r&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-packages.html#cb6-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_bitbucket</span>(<span class="st">&quot;ibi_group/disgenet2r&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

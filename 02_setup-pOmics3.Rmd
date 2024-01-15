@@ -1,0 +1,26 @@
+# Setup pOmics3
+
+```{r}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+Prior to installing the `pOmics3` package, it helps to install required packages separately. This sometimes makes your life easier. 
+
+```{r}
+install.packages("tidyverse")
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

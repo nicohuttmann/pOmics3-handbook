@@ -15,7 +15,10 @@ rmd_files: [
   "02_R-and-RStudio.Rmd",
   "02_R-packages.Rmd",
   "02_github.Rmd",
+  "02_setup-pOmics3.Rmd", 
 
-  "03_overview-pOmics.Rmd"
+  "03_basics.Rmd", 
+  
+  "99_Appendix.Rmd"
 
   ]

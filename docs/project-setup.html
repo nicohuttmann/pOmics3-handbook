@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | pOmics3: Functional Proteomics Data Analysis in R</title>
-  <meta name="description" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <title>6 Project setup | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="6 Project setup | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta property="og:title" content="6 Project setup | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="6 Project setup | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-1.html"/>
+<link rel="prev" href="setup-pomics3.html"/>
+<link rel="next" href="appendix-a.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -169,25 +169,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Welcome to the pOmics3 Handbook!</p>
-<div id="ressources" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Ressources<a href="introduction.html#ressources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is a brief listing of resources for proteomics data analysis and R programming on which all following content is based on:</p>
-<ul>
-<li>More to come</li>
-</ul>
+<div id="project-setup" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Project setup<a href="project-setup.html#project-setup" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="project-setup.html#cb13-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="scripts" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Scripts<a href="project-setup.html#scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We should start with a place to save out code</p>
 </div>
-<div id="acknowledgements" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Acknowledgements<a href="introduction.html#acknowledgements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Brief thanks to the people which were involved in the early developments of these packages (<a href="https://nicohuttmann.github.io/pOmics-handbook/introduction.html">longer version</a>):</p>
-<ul>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/maxim-berezovski.html">Dr. Maxim Berezovski</a>: Freedom to try and learn different solutions to proteomics problems.</li>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/team/current-lab-members/zoran-minic.html">Dr. Zoran Minic</a>: Challenges to improve creativity and efficiency in proteomics data analysis.</li>
-<li><a href="https://mysite.science.uottawa.ca/mberezov/team/">Abdullah Khraibah</a>: Motivation to share analysis code and functions.</li>
-<li><a href="https://www.embl.org/groups/zimmermann-kogadeeva/members/">Daniel Torka</a>: Recommended tidyverse and R Markdown long before I started appreciating them. Thanks Junior!</li>
-</ul>
+<div id="data-structure" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Data Structure<a href="project-setup.html#data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A good idea for every project is to have a simple structure to store your files. Here, I suggest having three main folders:</p>
+<ol style="list-style-type: decimal">
+<li>Data to store all you raw data and other files that go into your analysis. In addition, you can create a sub folder to store all your RData files.</li>
+<li>Scripts to store all your analysis scripts and custom functions written for a specific analysis.</li>
+<li>Output to store all files, plots and tables that come out of your analysis. Depending on the project size, sub folders for individual figures in a manuscript or file types could be useful.</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="project-setup.html#cb14-1" tabindex="-1"></a><span class="co"># ---- Setup folders ---- </span></span>
+<span id="cb14-2"><a href="project-setup.html#cb14-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data&quot;</span>)</span>
+<span id="cb14-3"><a href="project-setup.html#cb14-3" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/raw&quot;</span>)</span>
+<span id="cb14-4"><a href="project-setup.html#cb14-4" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/RData&quot;</span>)</span>
+<span id="cb14-5"><a href="project-setup.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="project-setup.html#cb14-6" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Scripts&quot;</span>)</span>
+<span id="cb14-7"><a href="project-setup.html#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="project-setup.html#cb14-8" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Output&quot;</span>)</span></code></pre></div>
+<p>Now you can add your raw data etc. In this example, we will work with this data frame: … We can visualize the folder structure with the <code>fs::dir_tree</code> function.</p>
+</div>
+<div id="packages" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Packages<a href="project-setup.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All packages including the <code>pOmics3</code> package must be installed. Go back here to do so <a href="r-packages.html#from-github-and-others-sources">here</a></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="project-setup.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="project-setup.html#cb15-2" tabindex="-1"></a><span class="co">#library(pOmics3)</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="project-setup.html#cb16-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
+<span id="cb16-2"><a href="project-setup.html#cb16-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
+<span id="cb16-3"><a href="project-setup.html#cb16-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
+<span id="cb16-4"><a href="project-setup.html#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="project-setup.html#cb16-5" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
+<span id="cb16-6"><a href="project-setup.html#cb16-6" tabindex="-1"></a><span class="fu">.cat_character</span>(files)</span>
+<span id="cb16-7"><a href="project-setup.html#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="project-setup.html#cb16-8" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
+<p>We can further specify their names if we have a complicated sub folder structure like <a href="appendix-a.html#rename-files-based-on-sub-folders">this</a>.</p>
+</div>
+<div id="import-data" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Import data<a href="project-setup.html#import-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="project-setup.html#cb17-1" tabindex="-1"></a><span class="co"># ---- Create data structure ----</span></span>
+<span id="cb17-2"><a href="project-setup.html#cb17-2" tabindex="-1"></a>Info <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Imports =</span> <span class="fu">list</span>())</span>
+<span id="cb17-3"><a href="project-setup.html#cb17-3" tabindex="-1"></a>Datasets <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb17-4"><a href="project-setup.html#cb17-4" tabindex="-1"></a>Analysis <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -199,8 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setup-pomics3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

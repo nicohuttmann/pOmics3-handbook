@@ -17,9 +17,10 @@ This is a brief listing of resources for proteomics data analysis and R programm
 ## Acknowledgements
 
 Brief thanks to the people which were involved in the early developments of these packages ([longer version](https://nicohuttmann.github.io/pOmics-handbook/introduction.html)): 
+
 -   [Dr. Maxim Berezovski](https://mysite.science.uottawa.ca/mberezov/maxim-berezovski.html): Freedom to try and learn different solutions to proteomics problems. 
 -   [Dr. Zoran Minic](https://mysite.science.uottawa.ca/mberezov/team/current-lab-members/zoran-minic.html): Challenges to improve creativity and efficiency in proteomics data analysis.
 -   [Abdullah Khraibah](https://mysite.science.uottawa.ca/mberezov/team/): Motivation to share analysis code and functions.
--   [[Daniel Torka](https://www.embl.org/groups/zimmermann-kogadeeva/members/): Recommended tidyverse and R Markdown long before I started appreciating them. Thanks Junior!
+-   [Daniel Torka](https://www.embl.org/groups/zimmermann-kogadeeva/members/): Recommended tidyverse and R Markdown long before I started appreciating them. Thanks Junior!
 
 

@@ -2,27 +2,43 @@
 
 
 
-
-## MSigDB database
-
-The [Molecular Signatures Database](https://www.gsea-msigdb.org/gsea/msigdb/) (MSigDB) database provide curated gene sets for different applications. It is organized in 9 major collections.
+## Basic structure of databases
 
 
 
+## Download databases
 
-There is a number of functions provided by the [msigdbr](https://cran.r-project.org/web/packages/msigdbr/vignettes/msigdbr-intro.html) package which are implemented and supplemented by the pOmics package.
+For additional data, it makes sense to create a place to store them together. I propose a `list` for databases within the `Info` list
 
-__msigdbr__
+```{r}
+# ---- Prepare databases
 
-* `msigdbr()`: Retrieve gene sets
-* `msigdbr_species()`: View available species
-* `msigdbr_collections()`: View available collections
+Info$Databases <- list()
+
+```
+
+## UniProt
+
+```{r}
+
+# UniProt -> GOCC
+Info$Databases$UniProt <- db_download_UniProt()
+
+Info$Databases$GOCC <- db_UniProt2GO(Info$Databases$UniProt, ontology = "CC")
+
+```
 
 
-__pOmics__
 
-* setup_MSigDB()
-* 
 
+```{r}
+# ---- Prepare databases
+# STRING
+Info$Databases$STRING <- db_download_STRING(taxid = 10090)
+
+Info$Databases$STRING_UniProt <- db_STRING2UniProt(db_STRING = Info$Databases$STRING, 
+                                                   db_UniProt = Info$Databases$UniProt)
+
+```
 
 
