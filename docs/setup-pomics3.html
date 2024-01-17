@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="version-control-with-git-and-github.html"/>
+<link rel="prev" href="version-control-with-github.html"/>
 <link rel="next" href="project-setup.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -143,15 +143,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>Getting started</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a></li>
 <li class="chapter" data-level="3" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>3</b> R packages</a></li>
-<li class="chapter" data-level="4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>4</b> Version control with Git and GitHub</a></li>
+<li class="chapter" data-level="4" data-path="version-control-with-github.html"><a href="version-control-with-github.html"><i class="fa fa-check"></i><b>4</b> Version control with GitHub</a></li>
 <li class="chapter" data-level="5" data-path="setup-pomics3.html"><a href="setup-pomics3.html"><i class="fa fa-check"></i><b>5</b> Setup pOmics3</a></li>
 <li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="6" data-path="project-setup.html"><a href="project-setup.html"><i class="fa fa-check"></i><b>6</b> Project setup</a></li>
+<li class="part"><span><b>Data Analysis Basics</b></span></li>
+<li class="chapter" data-level="7" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>7</b> Import Data</a></li>
 <li class="part"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="7" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a></li>
+<li class="chapter" data-level="8" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>8</b> List of functions</a></li>
+<li class="chapter" data-level="9" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>9</b> Appendix B</a></li>
 </ul>
 
       </nav>
@@ -171,9 +173,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="setup-pomics3" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Setup pOmics3<a href="setup-pomics3.html#setup-pomics3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="setup-pomics3.html#cb11-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="setup-pomics3.html#cb13-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Prior to installing the <code>pOmics3</code> package, it helps to install required packages separately. This sometimes makes your life easier.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="setup-pomics3.html#cb12-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="setup-pomics3.html#cb14-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb14-2"><a href="setup-pomics3.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="setup-pomics3.html#cb14-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;vroom&quot;</span>))</span></code></pre></div>
+<p>Other functions not required for the <code>pOmics3</code> package but covered in this book can be installed with the following command.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="setup-pomics3.html#cb15-1" tabindex="-1"></a><span class="co"># Chapter 4</span></span>
+<span id="cb15-2"><a href="setup-pomics3.html#cb15-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;ggvenn&quot;</span>))</span>
+<span id="cb15-3"><a href="setup-pomics3.html#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="setup-pomics3.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="setup-pomics3.html#cb15-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb15-6"><a href="setup-pomics3.html#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="setup-pomics3.html#cb15-7" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ComplexHeatmap&quot;</span>)</span>
+<span id="cb15-8"><a href="setup-pomics3.html#cb15-8" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span>
+<span id="cb15-9"><a href="setup-pomics3.html#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="setup-pomics3.html#cb15-10" tabindex="-1"></a><span class="co"># Chapter 5</span></span>
+<span id="cb15-11"><a href="setup-pomics3.html#cb15-11" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;&quot;</span>))</span></code></pre></div>
 
 </div>
 
@@ -184,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="version-control-with-git-and-github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="version-control-with-github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="project-setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

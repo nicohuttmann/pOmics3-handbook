@@ -1,4 +1,4 @@
-# Version control with Git and GitHub
+# Version control with GitHub
 
 >Excuse me, do you have a moment to talk about version control?^[https://peerj.com/preprints/3159v2/]
 
@@ -17,12 +17,27 @@ Once this is done, you should be able to connect and download online GitHub repo
 
 ## Basic GitHub routine
 
+
+Open your Git terminal in R and start with these lines of code.
+
+
 Add files:
 
 ```{bash, eval=FALSE}
 git add .
 ```
 
+Commit changes: 
+
+```{bash, eval=FALSE}
+git commit -m "Add important changes"
+```
+
+Push your commits:
+
+```{bash, eval=FALSE}
+git push
+```
 ...
 
 

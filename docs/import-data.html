@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R</title>
-  <meta name="description" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <title>7 Import Data | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="7 Import Data | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta property="og:title" content="7 Import Data | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="7 Import Data | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="r-packages.html"/>
+<link rel="prev" href="project-setup.html"/>
+<link rel="next" href="list-of-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -171,29 +171,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-and-rstudio" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> R and RStudio<a href="r-and-rstudio.html#r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<blockquote>
-<p>“R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.”</p>
-</blockquote>
-<p>This is the description of R on the R website.</p>
-<div id="install-the-r-language" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Install the R language<a href="r-and-rstudio.html#install-the-r-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Download the most recent release of R for your platform from <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>. Install it like any other program. It is important to install R before RStudio.</p>
+<div id="import-data" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Import Data<a href="import-data.html#import-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="import-data.html#cb18-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="packages" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Packages<a href="import-data.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All packages including the <code>pOmics3</code> package must be installed. Go back here to do so <a href="r-packages.html#from-github-and-others-sources">here</a></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="import-data.html#cb19-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="import-data.html#cb19-2" tabindex="-1"></a><span class="co">#library(pOmics3)</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="import-data.html#cb20-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
+<span id="cb20-2"><a href="import-data.html#cb20-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
+<span id="cb20-3"><a href="import-data.html#cb20-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
+<span id="cb20-4"><a href="import-data.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="import-data.html#cb20-5" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
+<span id="cb20-6"><a href="import-data.html#cb20-6" tabindex="-1"></a><span class="fu">.cat_character</span>(files)</span>
+<span id="cb20-7"><a href="import-data.html#cb20-7" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="import-data.html#cb20-8" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
+<p>We can further specify their names if we have a complicated sub folder structure like <a href="appendix-b.html#rename-files-based-on-sub-folders">this</a>.</p>
 </div>
-<div id="install-rstudio" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Install RStudio<a href="r-and-rstudio.html#install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>RStudio is an integrated development environment (IDE) for R. Other IDEs do exist, but RStudio is the software of choice by far. Like, by far. Download the desktop version of RStudio from <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a>. This is the program in which you will interact with the R language and conduct all your analyses.</p>
+<div id="import-data-1" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Import data<a href="import-data.html#import-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="import-data.html#cb21-1" tabindex="-1"></a><span class="co"># ---- Create data structure ----</span></span>
+<span id="cb21-2"><a href="import-data.html#cb21-2" tabindex="-1"></a>Info <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Imports =</span> <span class="fu">list</span>())</span>
+<span id="cb21-3"><a href="import-data.html#cb21-3" tabindex="-1"></a>Datasets <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb21-4"><a href="import-data.html#cb21-4" tabindex="-1"></a>Analysis <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="import-data.html#cb22-1" tabindex="-1"></a><span class="co"># ---- Import data ----</span></span>
+<span id="cb22-2"><a href="import-data.html#cb22-2" tabindex="-1"></a><span class="fu">import_files</span>(<span class="at">files =</span> <span class="fu">c</span>(<span class="co"># phospho_ion = &quot;Data/PTM/ion.tsv&quot;,</span></span>
+<span id="cb22-3"><a href="import-data.html#cb22-3" tabindex="-1"></a>                       <span class="co"># phospho_peptide = &quot;Data/PTM/peptide.tsv&quot;,</span></span>
+<span id="cb22-4"><a href="import-data.html#cb22-4" tabindex="-1"></a>                       <span class="at">phospho_protein =</span> <span class="st">&quot;Data/PTM/protein.tsv&quot;</span>,</span>
+<span id="cb22-5"><a href="import-data.html#cb22-5" tabindex="-1"></a>                       <span class="co"># phospho_psm = &quot;Data/PTM/psm.tsv&quot;,</span></span>
+<span id="cb22-6"><a href="import-data.html#cb22-6" tabindex="-1"></a>                       <span class="co"># full_ion = &quot;Data/SP2/ion.tsv&quot;,</span></span>
+<span id="cb22-7"><a href="import-data.html#cb22-7" tabindex="-1"></a>                       <span class="co"># full_peptide = &quot;Data/SP2/peptide.tsv&quot;,</span></span>
+<span id="cb22-8"><a href="import-data.html#cb22-8" tabindex="-1"></a>                       <span class="at">full_protein =</span> <span class="st">&quot;Data/SP2/protein.tsv&quot;</span><span class="co">#,</span></span>
+<span id="cb22-9"><a href="import-data.html#cb22-9" tabindex="-1"></a>                       <span class="co">#full_psm = &quot;Data/SP2/psm.tsv&quot;</span></span>
+<span id="cb22-10"><a href="import-data.html#cb22-10" tabindex="-1"></a>                       ))</span></code></pre></div>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="project-setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="list-of-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

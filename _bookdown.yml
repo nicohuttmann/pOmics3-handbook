@@ -11,14 +11,15 @@ rmd_files: [
 
   "01_intro.Rmd",
 
-  "02_intro.Rmd",
   "02_R-and-RStudio.Rmd",
   "02_R-packages.Rmd",
   "02_github.Rmd",
   "02_setup-pOmics3.Rmd", 
 
-  "03_basics.Rmd", 
+  "03a_basics.Rmd", 
+  "03b_basics.Rmd", 
   
-  "99_Appendix.Rmd"
+  "99_appendix-a.Rmd", 
+  "99_appendix-b.Rmd"
 
   ]

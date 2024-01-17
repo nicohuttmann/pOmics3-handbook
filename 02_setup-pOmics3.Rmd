@@ -9,12 +9,32 @@ Prior to installing the `pOmics3` package, it helps to install required packages
 ```{r}
 install.packages("tidyverse")
 
+install.packages(c("vroom"))
+
+
+
+
+
 
 ```
 
 
+Other functions not required for the `pOmics3` package but covered in this book can be installed with the following command.
 
 
+```{r}
+# Chapter 4
+install.packages(c("ggvenn"))
+
+
+install.packages("BiocManager")
+
+BiocManager::install("ComplexHeatmap")
+install.packages("magick")
+
+# Chapter 5
+install.packages(c(""))
+```
 
 
 

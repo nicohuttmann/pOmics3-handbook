@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R</title>
-  <meta name="description" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <title>8 List of functions | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="8 List of functions | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta property="og:title" content="8 List of functions | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 R and RStudio | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="8 List of functions | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="r-packages.html"/>
+<link rel="prev" href="import-data.html"/>
+<link rel="next" href="appendix-b.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -171,20 +171,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-and-rstudio" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> R and RStudio<a href="r-and-rstudio.html#r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<blockquote>
-<p>“R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.”</p>
-</blockquote>
-<p>This is the description of R on the R website.</p>
-<div id="install-the-r-language" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Install the R language<a href="r-and-rstudio.html#install-the-r-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Download the most recent release of R for your platform from <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>. Install it like any other program. It is important to install R before RStudio.</p>
+<div id="list-of-functions" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> List of functions<a href="list-of-functions.html#list-of-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-structure-1" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Data structure<a href="list-of-functions.html#data-structure-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="import-data-functions" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Import data functions<a href="list-of-functions.html#import-data-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>import_files</li>
+<li>.save_import</li>
+</ul>
 </div>
-<div id="install-rstudio" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Install RStudio<a href="r-and-rstudio.html#install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>RStudio is an integrated development environment (IDE) for R. Other IDEs do exist, but RStudio is the software of choice by far. Like, by far. Download the desktop version of RStudio from <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a>. This is the program in which you will interact with the R language and conduct all your analyses.</p>
+<div id="dataset-functions" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Dataset functions<a href="list-of-functions.html#dataset-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>new_dataset</li>
+<li>save_dataset</li>
+<li>import2new_dataset</li>
+<li>get_dataset</li>
+<li>get_dataset_names</li>
+<li>data_frame2new_dataset</li>
+</ul>
+</div>
+<div id="variables-functions" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Variables functions<a href="list-of-functions.html#variables-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>get_variables</li>
+<li>get_variables_data</li>
+<li>get_variables_data_names</li>
+<li>save_variables_data</li>
+</ul>
+</div>
+<div id="observations-functions" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Observations functions<a href="list-of-functions.html#observations-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>get_observations</li>
+<li>get_observations_data</li>
+<li>get_observations_data_names</li>
+<li>save_observations_data</li>
+</ul>
+</div>
+<div id="dataset-functions-1" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> Dataset functions<a href="list-of-functions.html#dataset-functions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>get_data_frame</li>
+<li>get_data_frame_names</li>
+<li>save_data_frame</li>
+</ul>
+</div>
+<div id="data-handling-helpers" class="section level3 hasAnchor" number="8.1.6">
+<h3 class="hasAnchor"><span class="header-section-number">8.1.6</span> Data handling helpers<br />
+<a href="list-of-functions.html#data-handling-helpers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>tibble2matrix</li>
+<li>tibble2data_frame</li>
+<li>matrix2tibble</li>
+<li>data_frame2tibble</li>
+<li>data2tibble</li>
+<li>transpose_tibble</li>
+<li>list2logical_df</li>
+</ul>
+</div>
+<div id="strsplit-helper-functions" class="section level3 hasAnchor" number="8.1.7">
+<h3><span class="header-section-number">8.1.7</span> strsplit helper functions<a href="list-of-functions.html#strsplit-helper-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>strsplit</li>
+<li>strsplit_keep</li>
+<li>strsplit_keep_first</li>
+<li>strsplit_keep_firstn</li>
+<li>strsplit_keep_last</li>
+<li>strsplit_keep_lastn</li>
+<li>str_locate_last</li>
+<li>str_rev</li>
+</ul>
+</div>
+<div id="code-helpers" class="section level3 hasAnchor" number="8.1.8">
+<h3><span class="header-section-number">8.1.8</span> Code helpers<a href="list-of-functions.html#code-helpers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>.cat_character</li>
+<li>.cat_character_named</li>
+<li>.cat_numeric</li>
+<li>.cat_function</li>
+<li>.identify_observations</li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -192,8 +263,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="import-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-b.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

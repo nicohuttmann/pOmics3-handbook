@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="setup-pomics3.html"/>
-<link rel="next" href="appendix-a.html"/>
+<link rel="next" href="import-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -143,15 +143,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>Getting started</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a></li>
 <li class="chapter" data-level="3" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>3</b> R packages</a></li>
-<li class="chapter" data-level="4" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i><b>4</b> Version control with Git and GitHub</a></li>
+<li class="chapter" data-level="4" data-path="version-control-with-github.html"><a href="version-control-with-github.html"><i class="fa fa-check"></i><b>4</b> Version control with GitHub</a></li>
 <li class="chapter" data-level="5" data-path="setup-pomics3.html"><a href="setup-pomics3.html"><i class="fa fa-check"></i><b>5</b> Setup pOmics3</a></li>
 <li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="6" data-path="project-setup.html"><a href="project-setup.html"><i class="fa fa-check"></i><b>6</b> Project setup</a></li>
+<li class="part"><span><b>Data Analysis Basics</b></span></li>
+<li class="chapter" data-level="7" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>7</b> Import Data</a></li>
 <li class="part"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="7" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a></li>
+<li class="chapter" data-level="8" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>8</b> List of functions</a></li>
+<li class="chapter" data-level="9" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>9</b> Appendix B</a></li>
 </ul>
 
       </nav>
@@ -171,10 +173,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="project-setup" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> Project setup<a href="project-setup.html#project-setup" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="project-setup.html#cb13-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="project-setup.html#cb16-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div id="scripts" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Scripts<a href="project-setup.html#scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We should start with a place to save out code</p>
+<p>We should start with a place to save our code</p>
 </div>
 <div id="data-structure" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Data Structure<a href="project-setup.html#data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -184,37 +186,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Scripts to store all your analysis scripts and custom functions written for a specific analysis.</li>
 <li>Output to store all files, plots and tables that come out of your analysis. Depending on the project size, sub folders for individual figures in a manuscript or file types could be useful.</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="project-setup.html#cb14-1" tabindex="-1"></a><span class="co"># ---- Setup folders ---- </span></span>
-<span id="cb14-2"><a href="project-setup.html#cb14-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data&quot;</span>)</span>
-<span id="cb14-3"><a href="project-setup.html#cb14-3" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/raw&quot;</span>)</span>
-<span id="cb14-4"><a href="project-setup.html#cb14-4" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/RData&quot;</span>)</span>
-<span id="cb14-5"><a href="project-setup.html#cb14-5" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="project-setup.html#cb14-6" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Scripts&quot;</span>)</span>
-<span id="cb14-7"><a href="project-setup.html#cb14-7" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="project-setup.html#cb14-8" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Output&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="project-setup.html#cb17-1" tabindex="-1"></a><span class="co"># ---- Setup folders ---- </span></span>
+<span id="cb17-2"><a href="project-setup.html#cb17-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data&quot;</span>)</span>
+<span id="cb17-3"><a href="project-setup.html#cb17-3" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/raw&quot;</span>)</span>
+<span id="cb17-4"><a href="project-setup.html#cb17-4" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Data/RData&quot;</span>)</span>
+<span id="cb17-5"><a href="project-setup.html#cb17-5" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="project-setup.html#cb17-6" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Scripts&quot;</span>)</span>
+<span id="cb17-7"><a href="project-setup.html#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="project-setup.html#cb17-8" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Output&quot;</span>)</span></code></pre></div>
 <p>Now you can add your raw data etc. In this example, we will work with this data frame: … We can visualize the folder structure with the <code>fs::dir_tree</code> function.</p>
-</div>
-<div id="packages" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Packages<a href="project-setup.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All packages including the <code>pOmics3</code> package must be installed. Go back here to do so <a href="r-packages.html#from-github-and-others-sources">here</a></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="project-setup.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-2"><a href="project-setup.html#cb15-2" tabindex="-1"></a><span class="co">#library(pOmics3)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="project-setup.html#cb16-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
-<span id="cb16-2"><a href="project-setup.html#cb16-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
-<span id="cb16-3"><a href="project-setup.html#cb16-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
-<span id="cb16-4"><a href="project-setup.html#cb16-4" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="project-setup.html#cb16-5" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
-<span id="cb16-6"><a href="project-setup.html#cb16-6" tabindex="-1"></a><span class="fu">.cat_character</span>(files)</span>
-<span id="cb16-7"><a href="project-setup.html#cb16-7" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="project-setup.html#cb16-8" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
-<p>We can further specify their names if we have a complicated sub folder structure like <a href="appendix-a.html#rename-files-based-on-sub-folders">this</a>.</p>
-</div>
-<div id="import-data" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Import data<a href="project-setup.html#import-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="project-setup.html#cb17-1" tabindex="-1"></a><span class="co"># ---- Create data structure ----</span></span>
-<span id="cb17-2"><a href="project-setup.html#cb17-2" tabindex="-1"></a>Info <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Imports =</span> <span class="fu">list</span>())</span>
-<span id="cb17-3"><a href="project-setup.html#cb17-3" tabindex="-1"></a>Datasets <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb17-4"><a href="project-setup.html#cb17-4" tabindex="-1"></a>Analysis <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -227,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="setup-pomics3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="import-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

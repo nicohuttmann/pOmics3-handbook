@@ -1,0 +1,76 @@
+# (PART\*) Data Analysis Basics {.unnumbered}
+
+# Import Data
+
+```{r}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+
+
+
+## Packages
+
+All packages including the `pOmics3` package must be installed. Go back here to do so [here](#from-github-and-others-sources)
+
+```{r, load packages}
+library(tidyverse)
+#library(pOmics3)
+```
+
+
+
+
+```{r}
+## Collect file names 
+# the pattern argument specificies that we only look for .tsv files
+files <- list.files(recursive = T, pattern = "\\.tsv")
+
+## this function helps with turning vectors into their code equivalents 
+.cat_character(files)
+
+rm(files)
+```
+
+
+We can further specify their names if we have a complicated sub folder structure like [this](#rename-files-based-on-sub-folders).
+
+
+## Import data
+
+
+```{r}
+# ---- Create data structure ----
+Info <- list(Imports = list())
+Datasets <- list()
+Analysis <- list()
+```
+
+
+
+
+
+
+
+```{r}
+# ---- Import data ----
+import_files(files = c(# phospho_ion = "Data/PTM/ion.tsv",
+                       # phospho_peptide = "Data/PTM/peptide.tsv",
+                       phospho_protein = "Data/PTM/protein.tsv",
+                       # phospho_psm = "Data/PTM/psm.tsv",
+                       # full_ion = "Data/SP2/ion.tsv",
+                       # full_peptide = "Data/SP2/peptide.tsv",
+                       full_protein = "Data/SP2/protein.tsv"#,
+                       #full_psm = "Data/SP2/psm.tsv"
+                       ))
+
+```
+
+
+
+
+
+
+
+
+

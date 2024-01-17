@@ -1,0 +1,74 @@
+# (PART\*) Appendix {.unnumbered}
+
+# List of functions
+
+## Data structure
+
+### Import data functions
+
+-   import_files
+-   .save_import
+
+### Dataset functions
+
+-   new_dataset
+-   save_dataset
+-   import2new_dataset
+-   get_dataset
+-   get_dataset_names
+-   data_frame2new_dataset
+
+### Variables functions
+
+-   get_variables
+-   get_variables_data
+-   get_variables_data_names
+-   save_variables_data
+
+### Observations functions
+
+-   get_observations
+-   get_observations_data
+-   get_observations_data_names
+-   save_observations_data
+
+### Dataset functions
+
+-   get_data_frame
+-   get_data_frame_names
+-   save_data_frame
+
+### Data handling helpers\
+
+-   tibble2matrix
+-   tibble2data_frame
+-   matrix2tibble
+-   data_frame2tibble
+-   data2tibble
+-   transpose_tibble
+-   list2logical_df
+
+### strsplit helper functions
+
+-   strsplit
+-   strsplit_keep
+-   strsplit_keep_first
+-   strsplit_keep_firstn
+-   strsplit_keep_last
+-   strsplit_keep_lastn
+-   str_locate_last
+-   str_rev
+
+### Code helpers
+
+-   .cat_character
+-   .cat_character_named
+-   .cat_numeric
+-   .cat_function
+-   .identify_observations
+
+
+
+
+
+
