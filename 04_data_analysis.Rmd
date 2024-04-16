@@ -1,16 +1,139 @@
 
+# (PART\*) Data Analysis {.unnumbered}
+
+
+# Data normalization 
+
+
+
+## limma normalization methods {.tabset}
 
 
 
 
-```{r simple venn diagram}
-# Load library 
-library(ggvenn)
 
-# 
- ggplot(aes(A = min2.x, B = min2.y)) +
-  ggvenn::geom_venn() +
-  theme_void() + 
-  coord_fixed()
+### base {-}
+
+```{r}
+data_norm <- data %>% 
+  transpose_tibble() %>% 
+  tibble2matrix() %>% 
+  limma::normalizeBetweenArrays(method = "scale") %>% 
+  matrix2tibble("variables") %>% 
+  transpose_tibble()
 ```
+
+### pOmics3 {-}
+
+```{r}
+get_data_frame(which = "channel", 
+               variables = , 
+               observations = 
+               dataset = "dataset1") %>% 
+  transpose_tibble() %>% 
+  tibble2matrix() %>% 
+  limma::normalizeBetweenArrays(method = "scale") %>% 
+  matrix2tibble("variables")
+```
+
+### pOmics3 (+ save) {-}
+
+```{r}
+get_data_frame(which = "channel", 
+               variables = , 
+               observations = 
+               dataset = "dataset1") %>% 
+  transpose_tibble() %>% 
+  tibble2matrix() %>% 
+  limma::normalizeBetweenArrays(method = "scale") %>% 
+  matrix2tibble("variables") %>% 
+  transpose_tibble() %>% 
+  save_data_frame("median", dataset = "Liver_SPP_protein")
+```
+
+
+
+## vsn normalization {.tabset}
+
+
+
+
+
+
+## pqn normalization (implemented by pOmics3)
+
+
+
+
+## Group-wise normalization {.tabset}
+
+
+### base {-}
+
+```{r}
+data %>% 
+  mutate(group = groups[observations], .after = "observations")
+  split(.$group) %>% 
+  map(\(x) {
+    x %>% select(-group) %>% 
+      transpose_tibble() %>% 
+      tibble2matrix() %>% 
+      limma::normalizeBetweenArrays(method = "scale") %>% 
+      matrix2tibble("variables") %>% 
+      transpose_tibble()
+  }) %>% 
+  bind_rows() %>% 
+  arrange(match(observations, names(groups)))
+```
+
+
+### pOmics3 {-}
+
+```{r}
+get_data_frame(which = "channel", 
+               variables = , 
+               observations = , 
+               dataset = "protein") %>% 
+  add_observations_data("group", dataset = "protein") %>% 
+  split(.$group) %>% 
+  map(\(x) {
+    x %>% select(-group) %>% 
+      transpose_tibble() %>% 
+      tibble2matrix() %>% 
+      limma::normalizeBetweenArrays(method = "scale") %>% 
+      matrix2tibble("variables") %>% 
+      transpose_tibble()
+  }) %>% 
+  bind_rows() %>% 
+  arrange(match(observations, get_observations(dataset = "protein"))) %>% 
+  save_data_frame("median_grouped", dataset = "protein")
+```
+
+
+
+### pOmics3 (+ save) {-}
+
+```{r}
+get_data_frame(which = "channel", 
+               variables = , 
+               observations = , 
+               dataset = "protein") %>% 
+  add_observations_data("group", dataset = "protein") %>% 
+  split(.$group) %>% 
+  map(\(x) {
+    x %>% select(-group) %>% 
+      transpose_tibble() %>% 
+      tibble2matrix() %>% 
+      limma::normalizeBetweenArrays(method = "scale") %>% 
+      matrix2tibble("variables") %>% 
+      transpose_tibble()
+  }) %>% 
+  bind_rows() %>% 
+  arrange(match(observations, get_observations(dataset = "protein"))) %>% 
+  save_data_frame("median_grouped", dataset = "protein")
+```
+
+
+
+
 

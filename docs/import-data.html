@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Import Data | pOmics3: Functional Proteomics Data Analysis in R</title>
   <meta name="description" content="7 Import Data | pOmics3: Functional Proteomics Data Analysis in R" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Import Data | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="project-setup.html"/>
-<link rel="next" href="list-of-functions.html"/>
+<link rel="next" href="data-normalization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -149,11 +149,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="setup-pomics3.html"><a href="setup-pomics3.html"><i class="fa fa-check"></i><b>5</b> Setup pOmics3</a></li>
 <li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="6" data-path="project-setup.html"><a href="project-setup.html"><i class="fa fa-check"></i><b>6</b> Project setup</a></li>
-<li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="7" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>7</b> Import Data</a></li>
+<li class="part"><span><b>Data Analysis</b></span></li>
+<li class="chapter" data-level="8" data-path="data-normalization.html"><a href="data-normalization.html"><i class="fa fa-check"></i><b>8</b> Data normalization</a></li>
 <li class="part"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="8" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>8</b> List of functions</a></li>
-<li class="chapter" data-level="9" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>9</b> Appendix B</a></li>
+<li class="chapter" data-level="9" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>9</b> List of functions</a></li>
+<li class="chapter" data-level="10" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>10</b> Appendix B</a></li>
 </ul>
 
       </nav>
@@ -205,6 +206,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-8"><a href="import-data.html#cb22-8" tabindex="-1"></a>                       <span class="at">full_protein =</span> <span class="st">&quot;Data/SP2/protein.tsv&quot;</span><span class="co">#,</span></span>
 <span id="cb22-9"><a href="import-data.html#cb22-9" tabindex="-1"></a>                       <span class="co">#full_psm = &quot;Data/SP2/psm.tsv&quot;</span></span>
 <span id="cb22-10"><a href="import-data.html#cb22-10" tabindex="-1"></a>                       ))</span></code></pre></div>
+</div>
+<div id="tidy-raw-data" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Tidy raw data<a href="import-data.html#tidy-raw-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="define-the-first-data-frame" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Define the first data frame<a href="import-data.html#define-the-first-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="add-meta-data" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Add meta data<a href="import-data.html#add-meta-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="filter-proteins-and-samples" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Filter proteins and samples<a href="import-data.html#filter-proteins-and-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -217,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="project-setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="list-of-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-normalization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

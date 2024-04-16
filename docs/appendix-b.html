@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 Appendix B | pOmics3: Functional Proteomics Data Analysis in R</title>
-  <meta name="description" content="9 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <title>10 Appendix B | pOmics3: Functional Proteomics Data Analysis in R</title>
+  <meta name="description" content="10 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta property="og:title" content="10 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="nicohuttmann/pOmics-guide" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
+  <meta name="twitter:title" content="10 Appendix B | pOmics3: Functional Proteomics Data Analysis in R" />
   
   
   
@@ -149,11 +149,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="setup-pomics3.html"><a href="setup-pomics3.html"><i class="fa fa-check"></i><b>5</b> Setup pOmics3</a></li>
 <li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="6" data-path="project-setup.html"><a href="project-setup.html"><i class="fa fa-check"></i><b>6</b> Project setup</a></li>
-<li class="part"><span><b>Data Analysis Basics</b></span></li>
 <li class="chapter" data-level="7" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>7</b> Import Data</a></li>
+<li class="part"><span><b>Data Analysis</b></span></li>
+<li class="chapter" data-level="8" data-path="data-normalization.html"><a href="data-normalization.html"><i class="fa fa-check"></i><b>8</b> Data normalization</a></li>
 <li class="part"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="8" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>8</b> List of functions</a></li>
-<li class="chapter" data-level="9" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>9</b> Appendix B</a></li>
+<li class="chapter" data-level="9" data-path="list-of-functions.html"><a href="list-of-functions.html"><i class="fa fa-check"></i><b>9</b> List of functions</a></li>
+<li class="chapter" data-level="10" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>10</b> Appendix B</a></li>
 </ul>
 
       </nav>
@@ -171,24 +172,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-b" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> Appendix B<a href="appendix-b.html#appendix-b" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="rename-files-based-on-sub-folders" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Rename files based on sub folders<a href="appendix-b.html#rename-files-based-on-sub-folders" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="appendix-b.html#cb23-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
-<span id="cb23-2"><a href="appendix-b.html#cb23-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
-<span id="cb23-3"><a href="appendix-b.html#cb23-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
-<span id="cb23-4"><a href="appendix-b.html#cb23-4" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="appendix-b.html#cb23-5" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="appendix-b.html#cb23-6" tabindex="-1"></a><span class="fu">names</span>(files) <span class="ot">&lt;-</span> files <span class="sc">%&gt;%</span> </span>
-<span id="cb23-7"><a href="appendix-b.html#cb23-7" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>, <span class="st">&quot;&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-8"><a href="appendix-b.html#cb23-8" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;_&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-9"><a href="appendix-b.html#cb23-9" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;Data_&quot;</span>, <span class="st">&quot;&quot;</span>, .)</span>
-<span id="cb23-10"><a href="appendix-b.html#cb23-10" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="appendix-b.html#cb23-11" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
-<span id="cb23-12"><a href="appendix-b.html#cb23-12" tabindex="-1"></a><span class="fu">.cat_character_named</span>(files)</span>
-<span id="cb23-13"><a href="appendix-b.html#cb23-13" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="appendix-b.html#cb23-14" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
+<div id="appendix-b" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Appendix B<a href="appendix-b.html#appendix-b" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rename-files-based-on-sub-folders" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Rename files based on sub folders<a href="appendix-b.html#rename-files-based-on-sub-folders" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="appendix-b.html#cb29-1" tabindex="-1"></a><span class="do">## Collect file names </span></span>
+<span id="cb29-2"><a href="appendix-b.html#cb29-2" tabindex="-1"></a><span class="co"># the pattern argument specificies that we only look for .tsv files</span></span>
+<span id="cb29-3"><a href="appendix-b.html#cb29-3" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">recursive =</span> T, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>)</span>
+<span id="cb29-4"><a href="appendix-b.html#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="appendix-b.html#cb29-5" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="appendix-b.html#cb29-6" tabindex="-1"></a><span class="fu">names</span>(files) <span class="ot">&lt;-</span> files <span class="sc">%&gt;%</span> </span>
+<span id="cb29-7"><a href="appendix-b.html#cb29-7" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">.tsv&quot;</span>, <span class="st">&quot;&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-8"><a href="appendix-b.html#cb29-8" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;_&quot;</span>, .) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-9"><a href="appendix-b.html#cb29-9" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">&quot;Data_&quot;</span>, <span class="st">&quot;&quot;</span>, .)</span>
+<span id="cb29-10"><a href="appendix-b.html#cb29-10" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="appendix-b.html#cb29-11" tabindex="-1"></a><span class="do">## this function helps with turning vectors into their code equivalents </span></span>
+<span id="cb29-12"><a href="appendix-b.html#cb29-12" tabindex="-1"></a><span class="fu">.cat_character_named</span>(files)</span>
+<span id="cb29-13"><a href="appendix-b.html#cb29-13" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="appendix-b.html#cb29-14" tabindex="-1"></a><span class="fu">rm</span>(files)</span></code></pre></div>
 
 </div>
 </div>

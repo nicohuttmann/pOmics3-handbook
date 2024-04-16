@@ -1,4 +1,3 @@
-# (PART\*) Data Analysis Basics {.unnumbered}
 
 # Import Data
 
@@ -67,6 +66,36 @@ import_files(files = c(# phospho_ion = "Data/PTM/ion.tsv",
 ```
 
 
+
+
+
+
+## Tidy raw data
+
+
+
+
+
+
+
+
+## Define the first data frame
+
+
+
+
+
+
+
+## Add meta data
+
+
+
+
+
+
+
+## Filter proteins and samples
 
 
 

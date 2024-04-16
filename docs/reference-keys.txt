@@ -21,6 +21,15 @@ data-structure
 import-data
 packages
 import-data-1
+tidy-raw-data
+define-the-first-data-frame
+add-meta-data
+filter-proteins-and-samples
+data-normalization
+limma-normalization-methods
+vsn-normalization
+pqn-normalization-implemented-by-pomics3
+group-wise-normalization
 list-of-functions
 data-structure-1
 import-data-functions

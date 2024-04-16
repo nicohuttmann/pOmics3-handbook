@@ -19,6 +19,8 @@ rmd_files: [
   "03a_basics.Rmd", 
   "03b_basics.Rmd", 
   
+  "04_data_analysis.Rmd", 
+  
   "99_appendix-a.Rmd", 
   "99_appendix-b.Rmd"
 
