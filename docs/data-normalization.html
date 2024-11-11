@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -176,39 +176,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> Data normalization<a href="data-normalization.html#data-normalization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="limma-normalization-methods" class="section level2 tabset hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> limma normalization methods<a href="data-normalization.html#limma-normalization-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="base" class="section level3 unnumbered hasAnchor">
-<h3>base<a href="data-normalization.html#base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-normalization.html#cb23-1" tabindex="-1"></a>data_norm <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="data-normalization.html#cb23-2" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb23-3"><a href="data-normalization.html#cb23-3" tabindex="-1"></a>  <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb23-4"><a href="data-normalization.html#cb23-4" tabindex="-1"></a>  limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-5"><a href="data-normalization.html#cb23-5" tabindex="-1"></a>  <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-6"><a href="data-normalization.html#cb23-6" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>()</span></code></pre></div>
-</div>
-<div id="pomics3" class="section level3 unnumbered hasAnchor">
-<h3>pOmics3<a href="data-normalization.html#pomics3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-normalization.html#cb24-1" tabindex="-1"></a><span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;channel&quot;</span>, </span>
-<span id="cb24-2"><a href="data-normalization.html#cb24-2" tabindex="-1"></a>               <span class="at">variables =</span> , </span>
-<span id="cb24-3"><a href="data-normalization.html#cb24-3" tabindex="-1"></a>               <span class="at">observations =</span> </span>
-<span id="cb24-4"><a href="data-normalization.html#cb24-4" tabindex="-1"></a>               <span class="at">dataset =</span> <span class="st">&quot;dataset1&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-5"><a href="data-normalization.html#cb24-5" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb24-6"><a href="data-normalization.html#cb24-6" tabindex="-1"></a>  <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb24-7"><a href="data-normalization.html#cb24-7" tabindex="-1"></a>  limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-8"><a href="data-normalization.html#cb24-8" tabindex="-1"></a>  <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>)</span></code></pre></div>
-</div>
-<div id="pomics3-save" class="section level3 unnumbered hasAnchor">
-<h3>pOmics3 (+ save)<a href="data-normalization.html#pomics3-save" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-normalization.html#cb25-1" tabindex="-1"></a><span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;channel&quot;</span>, </span>
-<span id="cb25-2"><a href="data-normalization.html#cb25-2" tabindex="-1"></a>               <span class="at">variables =</span> , </span>
-<span id="cb25-3"><a href="data-normalization.html#cb25-3" tabindex="-1"></a>               <span class="at">observations =</span> </span>
-<span id="cb25-4"><a href="data-normalization.html#cb25-4" tabindex="-1"></a>               <span class="at">dataset =</span> <span class="st">&quot;dataset1&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-5"><a href="data-normalization.html#cb25-5" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb25-6"><a href="data-normalization.html#cb25-6" tabindex="-1"></a>  <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb25-7"><a href="data-normalization.html#cb25-7" tabindex="-1"></a>  limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-8"><a href="data-normalization.html#cb25-8" tabindex="-1"></a>  <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-9"><a href="data-normalization.html#cb25-9" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb25-10"><a href="data-normalization.html#cb25-10" tabindex="-1"></a>  <span class="fu">save_data_frame</span>(<span class="st">&quot;median&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;Liver_SPP_protein&quot;</span>)</span></code></pre></div>
-</div>
 </div>
 <div id="vsn-normalization" class="section level2 tabset hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> vsn normalization<a href="data-normalization.html#vsn-normalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -218,63 +191,193 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="group-wise-normalization" class="section level2 tabset hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Group-wise normalization<a href="data-normalization.html#group-wise-normalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="base" class="section level3 unnumbered hasAnchor">
+<h3>base<a href="data-normalization.html#base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-normalization.html#cb24-1" tabindex="-1"></a>data_norm <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="data-normalization.html#cb24-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> groups[observations], <span class="at">.after =</span> <span class="st">&quot;observations&quot;</span>)</span>
+<span id="cb24-3"><a href="data-normalization.html#cb24-3" tabindex="-1"></a><span class="fu">split</span>(.<span class="sc">$</span>group) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="data-normalization.html#cb24-4" tabindex="-1"></a>  <span class="fu">map</span>(\(x) {</span>
+<span id="cb24-5"><a href="data-normalization.html#cb24-5" tabindex="-1"></a>    x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-6"><a href="data-normalization.html#cb24-6" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a href="data-normalization.html#cb24-7" tabindex="-1"></a>      <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-8"><a href="data-normalization.html#cb24-8" tabindex="-1"></a>      limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-9"><a href="data-normalization.html#cb24-9" tabindex="-1"></a>      <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-10"><a href="data-normalization.html#cb24-10" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>()</span>
+<span id="cb24-11"><a href="data-normalization.html#cb24-11" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-12"><a href="data-normalization.html#cb24-12" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb24-13"><a href="data-normalization.html#cb24-13" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(observations, <span class="fu">names</span>(groups)))</span></code></pre></div>
+</div>
+</div>
+<div id="principal-component-analysis-pca" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Principal component analysis (PCA)<a href="data-normalization.html#principal-component-analysis-pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(How to use PCA)</p>
 <div id="base-1" class="section level3 unnumbered hasAnchor">
 <h3>base<a href="data-normalization.html#base-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-normalization.html#cb26-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="data-normalization.html#cb26-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> groups[observations], <span class="at">.after =</span> <span class="st">&quot;observations&quot;</span>)</span>
-<span id="cb26-3"><a href="data-normalization.html#cb26-3" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-4"><a href="data-normalization.html#cb26-4" tabindex="-1"></a>  <span class="fu">map</span>(\(x) {</span>
-<span id="cb26-5"><a href="data-normalization.html#cb26-5" tabindex="-1"></a>    x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a href="data-normalization.html#cb26-6" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-7"><a href="data-normalization.html#cb26-7" tabindex="-1"></a>      <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-8"><a href="data-normalization.html#cb26-8" tabindex="-1"></a>      limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-9"><a href="data-normalization.html#cb26-9" tabindex="-1"></a>      <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-10"><a href="data-normalization.html#cb26-10" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>()</span>
-<span id="cb26-11"><a href="data-normalization.html#cb26-11" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-12"><a href="data-normalization.html#cb26-12" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb26-13"><a href="data-normalization.html#cb26-13" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(observations, <span class="fu">names</span>(groups)))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-normalization.html#cb25-1" tabindex="-1"></a>list_pca <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb25-2"><a href="data-normalization.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="data-normalization.html#cb25-3" tabindex="-1"></a>list_pca[[<span class="st">&quot;prcomp&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb25-4"><a href="data-normalization.html#cb25-4" tabindex="-1"></a>  <span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;median&quot;</span>, </span>
+<span id="cb25-5"><a href="data-normalization.html#cb25-5" tabindex="-1"></a>                 <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-6"><a href="data-normalization.html#cb25-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">c</span>(<span class="fu">scale</span>(x)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-7"><a href="data-normalization.html#cb25-7" tabindex="-1"></a>  <span class="fu">tibble2data_frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb25-8"><a href="data-normalization.html#cb25-8" tabindex="-1"></a>  <span class="fu">prcomp</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-normalization.html#cb26-1" tabindex="-1"></a>list_pca[[<span class="st">&quot;p12&quot;</span>]] <span class="ot">&lt;-</span> list_pca[[<span class="st">&quot;prcomp&quot;</span>]][[<span class="st">&quot;x&quot;</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="data-normalization.html#cb26-2" tabindex="-1"></a>  <span class="fu">matrix2tibble</span>(<span class="at">to.row.names =</span> <span class="st">&quot;observations&quot;</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb26-3"><a href="data-normalization.html#cb26-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> groups[observations], <span class="at">.after =</span> <span class="st">&quot;observations&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="data-normalization.html#cb26-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="data-normalization.html#cb26-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="data-normalization.html#cb26-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="data-normalization.html#cb26-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> Info<span class="sc">$</span>freezing_colors) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="data-normalization.html#cb26-8" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span> </span>
+<span id="cb26-9"><a href="data-normalization.html#cb26-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;PC1&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-10"><a href="data-normalization.html#cb26-10" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;PC2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-normalization.html#cb27-1" tabindex="-1"></a>list_pca[[<span class="st">&quot;p12&quot;</span>]] <span class="sc">+</span></span>
+<span id="cb27-2"><a href="data-normalization.html#cb27-2" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste0</span>(</span>
+<span id="cb27-3"><a href="data-normalization.html#cb27-3" tabindex="-1"></a>    <span class="st">&quot;PC1 (&quot;</span>, </span>
+<span id="cb27-4"><a href="data-normalization.html#cb27-4" tabindex="-1"></a>    <span class="fu">round</span>(</span>
+<span id="cb27-5"><a href="data-normalization.html#cb27-5" tabindex="-1"></a>      <span class="fu">with</span>(</span>
+<span id="cb27-6"><a href="data-normalization.html#cb27-6" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">x =</span> list_pca[[<span class="st">&quot;prcomp&quot;</span>]][[<span class="st">&quot;sdev&quot;</span>]]), </span>
+<span id="cb27-7"><a href="data-normalization.html#cb27-7" tabindex="-1"></a>        x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb27-8"><a href="data-normalization.html#cb27-8" tabindex="-1"></a>  <span class="fu">ylab</span>(</span>
+<span id="cb27-9"><a href="data-normalization.html#cb27-9" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
+<span id="cb27-10"><a href="data-normalization.html#cb27-10" tabindex="-1"></a>      <span class="st">&quot;PC2 (&quot;</span>, </span>
+<span id="cb27-11"><a href="data-normalization.html#cb27-11" tabindex="-1"></a>      <span class="fu">round</span>(</span>
+<span id="cb27-12"><a href="data-normalization.html#cb27-12" tabindex="-1"></a>        <span class="fu">with</span>(</span>
+<span id="cb27-13"><a href="data-normalization.html#cb27-13" tabindex="-1"></a>          <span class="fu">list</span>(<span class="at">x =</span> list_pca[[<span class="st">&quot;prcomp&quot;</span>]][[<span class="st">&quot;sdev&quot;</span>]]), </span>
+<span id="cb27-14"><a href="data-normalization.html#cb27-14" tabindex="-1"></a>          x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))[<span class="dv">2</span>] <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>))</span></code></pre></div>
 </div>
-<div id="pomics3-1" class="section level3 unnumbered hasAnchor">
-<h3>pOmics3<a href="data-normalization.html#pomics3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-normalization.html#cb27-1" tabindex="-1"></a><span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;channel&quot;</span>, </span>
-<span id="cb27-2"><a href="data-normalization.html#cb27-2" tabindex="-1"></a>               <span class="at">variables =</span> , </span>
-<span id="cb27-3"><a href="data-normalization.html#cb27-3" tabindex="-1"></a>               <span class="at">observations =</span> , </span>
-<span id="cb27-4"><a href="data-normalization.html#cb27-4" tabindex="-1"></a>               <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-5"><a href="data-normalization.html#cb27-5" tabindex="-1"></a>  <span class="fu">add_observations_data</span>(<span class="st">&quot;group&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-6"><a href="data-normalization.html#cb27-6" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-7"><a href="data-normalization.html#cb27-7" tabindex="-1"></a>  <span class="fu">map</span>(\(x) {</span>
-<span id="cb27-8"><a href="data-normalization.html#cb27-8" tabindex="-1"></a>    x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-9"><a href="data-normalization.html#cb27-9" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-10"><a href="data-normalization.html#cb27-10" tabindex="-1"></a>      <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-11"><a href="data-normalization.html#cb27-11" tabindex="-1"></a>      limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-12"><a href="data-normalization.html#cb27-12" tabindex="-1"></a>      <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-13"><a href="data-normalization.html#cb27-13" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>()</span>
-<span id="cb27-14"><a href="data-normalization.html#cb27-14" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-15"><a href="data-normalization.html#cb27-15" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-16"><a href="data-normalization.html#cb27-16" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(observations, <span class="fu">get_observations</span>(<span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-17"><a href="data-normalization.html#cb27-17" tabindex="-1"></a>  <span class="fu">save_data_frame</span>(<span class="st">&quot;median_grouped&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>)</span></code></pre></div>
+<div id="pomics3" class="section level3 unnumbered hasAnchor">
+<h3>pOmics3<a href="data-normalization.html#pomics3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-normalization.html#cb28-1" tabindex="-1"></a>Analysis[[<span class="st">&quot;PCA&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb28-2"><a href="data-normalization.html#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="data-normalization.html#cb28-3" tabindex="-1"></a>Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;prcomp&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb28-4"><a href="data-normalization.html#cb28-4" tabindex="-1"></a>  <span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;median&quot;</span>, </span>
+<span id="cb28-5"><a href="data-normalization.html#cb28-5" tabindex="-1"></a>                 <span class="at">variables =</span> , </span>
+<span id="cb28-6"><a href="data-normalization.html#cb28-6" tabindex="-1"></a>                 <span class="at">observations =</span> , </span>
+<span id="cb28-7"><a href="data-normalization.html#cb28-7" tabindex="-1"></a>                 <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-8"><a href="data-normalization.html#cb28-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">c</span>(<span class="fu">scale</span>(x)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-9"><a href="data-normalization.html#cb28-9" tabindex="-1"></a>  <span class="fu">tibble2data_frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-10"><a href="data-normalization.html#cb28-10" tabindex="-1"></a>  <span class="fu">prcomp</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-normalization.html#cb29-1" tabindex="-1"></a>Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;p12&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb29-2"><a href="data-normalization.html#cb29-2" tabindex="-1"></a>  (Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;prcomp&quot;</span>]][[<span class="st">&quot;x&quot;</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="data-normalization.html#cb29-3" tabindex="-1"></a>     <span class="fu">matrix2tibble</span>(<span class="at">to.row.names =</span> <span class="st">&quot;observations&quot;</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb29-4"><a href="data-normalization.html#cb29-4" tabindex="-1"></a>     <span class="fu">add_observations_data</span>(<span class="st">&quot;group&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-5"><a href="data-normalization.html#cb29-5" tabindex="-1"></a>     <span class="fu">add_observations_data</span>(<span class="st">&quot;group2&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-6"><a href="data-normalization.html#cb29-6" tabindex="-1"></a>     <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> group, <span class="at">shape =</span> group2)) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="data-normalization.html#cb29-7" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-8"><a href="data-normalization.html#cb29-8" tabindex="-1"></a>     <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb29-9"><a href="data-normalization.html#cb29-9" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="data-normalization.html#cb29-10" tabindex="-1"></a>     <span class="co">#scale_color_manual(values = Info$color_scheme) +</span></span>
+<span id="cb29-11"><a href="data-normalization.html#cb29-11" tabindex="-1"></a>     <span class="fu">coord_fixed</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-12"><a href="data-normalization.html#cb29-12" tabindex="-1"></a>  <span class="fu">.set_PCA_labs</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-13"><a href="data-normalization.html#cb29-13" tabindex="-1"></a>  <span class="fu">.set_continuous_axes</span>(<span class="at">axis.unit.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="pomics3-save-1" class="section level3 unnumbered hasAnchor">
-<h3>pOmics3 (+ save)<a href="data-normalization.html#pomics3-save-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-normalization.html#cb28-1" tabindex="-1"></a><span class="fu">get_data_frame</span>(<span class="at">which =</span> <span class="st">&quot;channel&quot;</span>, </span>
-<span id="cb28-2"><a href="data-normalization.html#cb28-2" tabindex="-1"></a>               <span class="at">variables =</span> , </span>
-<span id="cb28-3"><a href="data-normalization.html#cb28-3" tabindex="-1"></a>               <span class="at">observations =</span> , </span>
-<span id="cb28-4"><a href="data-normalization.html#cb28-4" tabindex="-1"></a>               <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-5"><a href="data-normalization.html#cb28-5" tabindex="-1"></a>  <span class="fu">add_observations_data</span>(<span class="st">&quot;group&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-6"><a href="data-normalization.html#cb28-6" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-7"><a href="data-normalization.html#cb28-7" tabindex="-1"></a>  <span class="fu">map</span>(\(x) {</span>
-<span id="cb28-8"><a href="data-normalization.html#cb28-8" tabindex="-1"></a>    x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>group) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-9"><a href="data-normalization.html#cb28-9" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-10"><a href="data-normalization.html#cb28-10" tabindex="-1"></a>      <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-11"><a href="data-normalization.html#cb28-11" tabindex="-1"></a>      limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(<span class="at">method =</span> <span class="st">&quot;scale&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-12"><a href="data-normalization.html#cb28-12" tabindex="-1"></a>      <span class="fu">matrix2tibble</span>(<span class="st">&quot;variables&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-13"><a href="data-normalization.html#cb28-13" tabindex="-1"></a>      <span class="fu">transpose_tibble</span>()</span>
-<span id="cb28-14"><a href="data-normalization.html#cb28-14" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-15"><a href="data-normalization.html#cb28-15" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-16"><a href="data-normalization.html#cb28-16" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">match</span>(observations, <span class="fu">get_observations</span>(<span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-17"><a href="data-normalization.html#cb28-17" tabindex="-1"></a>  <span class="fu">save_data_frame</span>(<span class="st">&quot;median_grouped&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>)</span></code></pre></div>
+<div id="combined-pca-plots" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Combined PCA plots<a href="data-normalization.html#combined-pca-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-normalization.html#cb30-1" tabindex="-1"></a><span class="fu">wrap_plots</span>(list_pca[[<span class="st">&quot;p12&quot;</span>]], Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;p34&quot;</span>]], <span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-normalization.html#cb31-1" tabindex="-1"></a><span class="fu">wrap_plots</span>(Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;p12&quot;</span>]], Analysis[[<span class="st">&quot;PCA&quot;</span>]][[<span class="st">&quot;p34&quot;</span>]], <span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>)</span></code></pre></div>
+</div>
+<div id="how-to-get-creative" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> How to get creative<a href="data-normalization.html#how-to-get-creative" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>PCA can be used on subsets of samples or on a subset of proteins of interest.</p>
+</div>
+</div>
+<div id="differential-abundace-analysis-with-limma" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Differential abundace analysis with limma<a href="data-normalization.html#differential-abundace-analysis-with-limma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-normalization.html#cb32-1" tabindex="-1"></a><span class="co"># limma</span></span>
+<span id="cb32-2"><a href="data-normalization.html#cb32-2" tabindex="-1"></a>list_limma <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb32-3"><a href="data-normalization.html#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="data-normalization.html#cb32-4" tabindex="-1"></a><span class="co"># Make eset from tibble</span></span>
+<span id="cb32-5"><a href="data-normalization.html#cb32-5" tabindex="-1"></a>list_limma[[<span class="st">&quot;eset&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb32-6"><a href="data-normalization.html#cb32-6" tabindex="-1"></a>  <span class="fu">get_data_frame</span>(<span class="st">&quot;median&quot;</span>,</span>
+<span id="cb32-7"><a href="data-normalization.html#cb32-7" tabindex="-1"></a>                 <span class="at">variables =</span> , </span>
+<span id="cb32-8"><a href="data-normalization.html#cb32-8" tabindex="-1"></a>                 <span class="at">observations =</span> ,</span>
+<span id="cb32-9"><a href="data-normalization.html#cb32-9" tabindex="-1"></a>                 <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-10"><a href="data-normalization.html#cb32-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), log2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-11"><a href="data-normalization.html#cb32-11" tabindex="-1"></a>  <span class="fu">transpose_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-12"><a href="data-normalization.html#cb32-12" tabindex="-1"></a>  <span class="fu">tibble2matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-13"><a href="data-normalization.html#cb32-13" tabindex="-1"></a>  Biobase<span class="sc">::</span><span class="fu">ExpressionSet</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-normalization.html#cb33-1" tabindex="-1"></a><span class="co"># Describe experimental groups</span></span>
+<span id="cb33-2"><a href="data-normalization.html#cb33-2" tabindex="-1"></a>list_limma[[<span class="st">&quot;design&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(</span>
+<span id="cb33-3"><a href="data-normalization.html#cb33-3" tabindex="-1"></a>  <span class="sc">~</span><span class="dv">0</span><span class="sc">+</span><span class="fu">factor</span>(</span>
+<span id="cb33-4"><a href="data-normalization.html#cb33-4" tabindex="-1"></a>    <span class="fu">get_observations_data</span>(</span>
+<span id="cb33-5"><a href="data-normalization.html#cb33-5" tabindex="-1"></a>      <span class="at">which =</span> <span class="st">&quot;group&quot;</span>, </span>
+<span id="cb33-6"><a href="data-normalization.html#cb33-6" tabindex="-1"></a>      <span class="at">observations =</span> ,</span>
+<span id="cb33-7"><a href="data-normalization.html#cb33-7" tabindex="-1"></a>      <span class="at">output.type =</span> <span class="st">&quot;vector&quot;</span>, </span>
+<span id="cb33-8"><a href="data-normalization.html#cb33-8" tabindex="-1"></a>      <span class="at">dataset =</span> <span class="st">&quot;protein&quot;</span>), </span>
+<span id="cb33-9"><a href="data-normalization.html#cb33-9" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>))) <span class="co"># order of groups</span></span>
+<span id="cb33-10"><a href="data-normalization.html#cb33-10" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="data-normalization.html#cb33-11" tabindex="-1"></a><span class="fu">colnames</span>(list_limma[[<span class="st">&quot;design&quot;</span>]]) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>) <span class="co"># same as levels above</span></span>
+<span id="cb33-12"><a href="data-normalization.html#cb33-12" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="data-normalization.html#cb33-13" tabindex="-1"></a><span class="co"># Do first linear model fit</span></span>
+<span id="cb33-14"><a href="data-normalization.html#cb33-14" tabindex="-1"></a>list_limma[[<span class="st">&quot;fit&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(list_limma[[<span class="st">&quot;eset&quot;</span>]], list_limma[[<span class="st">&quot;design&quot;</span>]])</span>
+<span id="cb33-15"><a href="data-normalization.html#cb33-15" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="data-normalization.html#cb33-16" tabindex="-1"></a><span class="co"># Describe comparisons (contrasts)</span></span>
+<span id="cb33-17"><a href="data-normalization.html#cb33-17" tabindex="-1"></a>list_limma[[<span class="st">&quot;contrast.matrix&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb33-18"><a href="data-normalization.html#cb33-18" tabindex="-1"></a>  <span class="fu">makeContrasts</span>(B<span class="sc">-</span>A, C<span class="sc">-</span>A, B<span class="sc">-</span>C, <span class="co"># describe desired comparison</span></span>
+<span id="cb33-19"><a href="data-normalization.html#cb33-19" tabindex="-1"></a>                <span class="at">levels =</span> list_limma[[<span class="st">&quot;design&quot;</span>]])</span>
+<span id="cb33-20"><a href="data-normalization.html#cb33-20" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="data-normalization.html#cb33-21" tabindex="-1"></a><span class="co"># Compute contrasts</span></span>
+<span id="cb33-22"><a href="data-normalization.html#cb33-22" tabindex="-1"></a>list_limma[[<span class="st">&quot;fit2&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(list_limma[[<span class="st">&quot;fit&quot;</span>]], list_limma[[<span class="st">&quot;contrast.matrix&quot;</span>]])</span>
+<span id="cb33-23"><a href="data-normalization.html#cb33-23" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="data-normalization.html#cb33-24" tabindex="-1"></a><span class="co"># Apply empirical bayes statistics</span></span>
+<span id="cb33-25"><a href="data-normalization.html#cb33-25" tabindex="-1"></a>list_limma[[<span class="st">&quot;fit2_eBayes&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(list_limma[[<span class="st">&quot;fit2&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-normalization.html#cb34-1" tabindex="-1"></a>p.threshold <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb34-2"><a href="data-normalization.html#cb34-2" tabindex="-1"></a>fc.threshold.hit <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb34-3"><a href="data-normalization.html#cb34-3" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="data-normalization.html#cb34-4" tabindex="-1"></a>p.adjust.method <span class="ot">&lt;-</span> <span class="st">&quot;BH&quot;</span></span>
+<span id="cb34-5"><a href="data-normalization.html#cb34-5" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="data-normalization.html#cb34-6" tabindex="-1"></a><span class="co"># Tidy up results</span></span>
+<span id="cb34-7"><a href="data-normalization.html#cb34-7" tabindex="-1"></a>list_limma[[<span class="st">&quot;results&quot;</span>]] <span class="ot">&lt;-</span> biobroom<span class="sc">::</span><span class="fu">tidy.MArrayLM</span>(list_limma[[<span class="st">&quot;fit2_eBayes&quot;</span>]]) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-8"><a href="data-normalization.html#cb34-8" tabindex="-1"></a>  <span class="co"># do p-value correction</span></span>
+<span id="cb34-9"><a href="data-normalization.html#cb34-9" tabindex="-1"></a>  <span class="fu">group_by</span>(term) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-10"><a href="data-normalization.html#cb34-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p.adjust =</span> <span class="fu">p.adjust</span>(p.value, <span class="at">method =</span> p.adjust.method), <span class="at">.after =</span> <span class="st">&quot;p.value&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-11"><a href="data-normalization.html#cb34-11" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb34-12"><a href="data-normalization.html#cb34-12" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb34-13"><a href="data-normalization.html#cb34-13" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">regulation =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb34-14"><a href="data-normalization.html#cb34-14" tabindex="-1"></a>       <span class="at">regulation =</span> <span class="fu">ifelse</span>(p.adjust <span class="sc">&lt;</span> p.threshold <span class="sc">&amp;</span> estimate <span class="sc">&gt;=</span> fc.threshold.hit,</span>
+<span id="cb34-15"><a href="data-normalization.html#cb34-15" tabindex="-1"></a>                           <span class="st">&quot;hit.up&quot;</span>,</span>
+<span id="cb34-16"><a href="data-normalization.html#cb34-16" tabindex="-1"></a>                           regulation),</span>
+<span id="cb34-17"><a href="data-normalization.html#cb34-17" tabindex="-1"></a>       <span class="at">regulation =</span> <span class="fu">ifelse</span>(p.adjust <span class="sc">&lt;</span> p.threshold <span class="sc">&amp;</span> estimate <span class="sc">&lt;=</span> <span class="sc">-</span> fc.threshold.hit,</span>
+<span id="cb34-18"><a href="data-normalization.html#cb34-18" tabindex="-1"></a>                           <span class="st">&quot;hit.down&quot;</span>,</span>
+<span id="cb34-19"><a href="data-normalization.html#cb34-19" tabindex="-1"></a>                           regulation)) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-20"><a href="data-normalization.html#cb34-20" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>term)</span></code></pre></div>
+<p>Add candidates if wanted</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-normalization.html#cb35-1" tabindex="-1"></a>         <span class="co"># regulation = ifelse(p.value &lt; p.threshold &amp; estimate &gt;= fc.threshold.candidate,</span></span>
+<span id="cb35-2"><a href="data-normalization.html#cb35-2" tabindex="-1"></a>         <span class="co">#                     &quot;candidate.up&quot;,</span></span>
+<span id="cb35-3"><a href="data-normalization.html#cb35-3" tabindex="-1"></a>         <span class="co">#                     regulation),</span></span>
+<span id="cb35-4"><a href="data-normalization.html#cb35-4" tabindex="-1"></a>         <span class="co"># regulation = ifelse(p.value &lt; p.threshold &amp; estimate &lt;= - fc.threshold.candidate,</span></span>
+<span id="cb35-5"><a href="data-normalization.html#cb35-5" tabindex="-1"></a>         <span class="co">#                     &quot;candidate.down&quot;,</span></span>
+<span id="cb35-6"><a href="data-normalization.html#cb35-6" tabindex="-1"></a>         <span class="co">#                     regulation),</span></span></code></pre></div>
+<p>Add protein and gene names.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-normalization.html#cb36-1" tabindex="-1"></a>list_limma[[<span class="st">&quot;results&quot;</span>]] <span class="ot">&lt;-</span> list_limma[[<span class="st">&quot;results&quot;</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="data-normalization.html#cb36-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">variables =</span> gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="data-normalization.html#cb36-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Protein.name =</span> <span class="fu">pull</span>(Info[[<span class="st">&quot;Databases&quot;</span>]][[<span class="st">&quot;UniProt&quot;</span>]], </span>
+<span id="cb36-4"><a href="data-normalization.html#cb36-4" tabindex="-1"></a>                             <span class="st">&quot;Protein names&quot;</span>, </span>
+<span id="cb36-5"><a href="data-normalization.html#cb36-5" tabindex="-1"></a>                             <span class="st">&quot;Entry&quot;</span>)[variables], </span>
+<span id="cb36-6"><a href="data-normalization.html#cb36-6" tabindex="-1"></a>         <span class="at">Gene.name =</span> <span class="fu">pull</span>(Info[[<span class="st">&quot;Databases&quot;</span>]][[<span class="st">&quot;UniProt&quot;</span>]], </span>
+<span id="cb36-7"><a href="data-normalization.html#cb36-7" tabindex="-1"></a>                          <span class="st">&quot;Gene Names&quot;</span>, </span>
+<span id="cb36-8"><a href="data-normalization.html#cb36-8" tabindex="-1"></a>                          <span class="st">&quot;Entry&quot;</span>)[variables], </span>
+<span id="cb36-9"><a href="data-normalization.html#cb36-9" tabindex="-1"></a>         <span class="at">.after =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-normalization.html#cb37-1" tabindex="-1"></a>list_limma[[<span class="st">&quot;p&quot;</span>]] <span class="ot">&lt;-</span> </span>
+<span id="cb37-2"><a href="data-normalization.html#cb37-2" tabindex="-1"></a>  <span class="fu">names</span>(list_limma[[<span class="st">&quot;results&quot;</span>]]) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="data-normalization.html#cb37-3" tabindex="-1"></a>  <span class="fu">map</span>(\(x) </span>
+<span id="cb37-4"><a href="data-normalization.html#cb37-4" tabindex="-1"></a>      <span class="fu">ggplot</span>(list_limma[[<span class="st">&quot;results&quot;</span>]][[x]], </span>
+<span id="cb37-5"><a href="data-normalization.html#cb37-5" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> estimate, </span>
+<span id="cb37-6"><a href="data-normalization.html#cb37-6" tabindex="-1"></a>                 <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(p.value), </span>
+<span id="cb37-7"><a href="data-normalization.html#cb37-7" tabindex="-1"></a>                 <span class="at">color =</span> regulation, </span>
+<span id="cb37-8"><a href="data-normalization.html#cb37-8" tabindex="-1"></a>                 <span class="at">Protein.name =</span> Protein.name, </span>
+<span id="cb37-9"><a href="data-normalization.html#cb37-9" tabindex="-1"></a>                 <span class="at">Gene.name =</span> Gene.name)) <span class="sc">+</span></span>
+<span id="cb37-10"><a href="data-normalization.html#cb37-10" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-11"><a href="data-normalization.html#cb37-11" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">none =</span> <span class="st">&quot;grey&quot;</span>, </span>
+<span id="cb37-12"><a href="data-normalization.html#cb37-12" tabindex="-1"></a>                                      <span class="at">hit.up =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb37-13"><a href="data-normalization.html#cb37-13" tabindex="-1"></a>                                      <span class="at">hit.down =</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb37-14"><a href="data-normalization.html#cb37-14" tabindex="-1"></a>        <span class="fu">ggtitle</span>(x))</span>
+<span id="cb37-15"><a href="data-normalization.html#cb37-15" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="data-normalization.html#cb37-16" tabindex="-1"></a>Analysis[[<span class="st">&quot;Liver_total_limma&quot;</span>]] <span class="ot">&lt;-</span> list_limma</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-normalization.html#cb38-1" tabindex="-1"></a>patchwork<span class="sc">::</span><span class="fu">wrap_plots</span>(Analysis[[<span class="st">&quot;Liver_total_limma&quot;</span>]][[<span class="st">&quot;p&quot;</span>]], <span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-normalization.html#cb39-1" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(Analysis[[<span class="st">&quot;Liver_total_limma&quot;</span>]][[<span class="st">&quot;p&quot;</span>]][[<span class="dv">1</span>]])</span></code></pre></div>
 
-</div>
 </div>
 </div>
 

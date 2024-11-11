@@ -30,6 +30,10 @@ limma-normalization-methods
 vsn-normalization
 pqn-normalization-implemented-by-pomics3
 group-wise-normalization
+principal-component-analysis-pca
+combined-pca-plots
+how-to-get-creative
+differential-abundace-analysis-with-limma
 list-of-functions
 data-structure-1
 import-data-functions

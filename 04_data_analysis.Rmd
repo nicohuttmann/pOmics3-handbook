@@ -11,9 +11,6 @@
 
 
 
-
-### base {-}
-
 ```{r}
 data_norm <- data %>% 
   transpose_tibble() %>% 
@@ -21,34 +18,6 @@ data_norm <- data %>%
   limma::normalizeBetweenArrays(method = "scale") %>% 
   matrix2tibble("variables") %>% 
   transpose_tibble()
-```
-
-### pOmics3 {-}
-
-```{r}
-get_data_frame(which = "channel", 
-               variables = , 
-               observations = 
-               dataset = "dataset1") %>% 
-  transpose_tibble() %>% 
-  tibble2matrix() %>% 
-  limma::normalizeBetweenArrays(method = "scale") %>% 
-  matrix2tibble("variables")
-```
-
-### pOmics3 (+ save) {-}
-
-```{r}
-get_data_frame(which = "channel", 
-               variables = , 
-               observations = 
-               dataset = "dataset1") %>% 
-  transpose_tibble() %>% 
-  tibble2matrix() %>% 
-  limma::normalizeBetweenArrays(method = "scale") %>% 
-  matrix2tibble("variables") %>% 
-  transpose_tibble() %>% 
-  save_data_frame("median", dataset = "Liver_SPP_protein")
 ```
 
 
@@ -71,9 +40,9 @@ get_data_frame(which = "channel",
 ### base {-}
 
 ```{r}
-data %>% 
+data_norm <- data %>% 
   mutate(group = groups[observations], .after = "observations")
-  split(.$group) %>% 
+split(.$group) %>% 
   map(\(x) {
     x %>% select(-group) %>% 
       transpose_tibble() %>% 
@@ -87,51 +56,250 @@ data %>%
 ```
 
 
+## Principal component analysis (PCA)
+
+(How to use PCA)
+
+
+
+### base {-}
+
+```{r}
+list_pca <- list()
+
+list_pca[["prcomp"]] <- 
+  get_data_frame(which = "median", 
+                 dataset = "protein") %>% 
+  mutate(across(where(is.numeric), \(x) c(scale(x)))) %>% 
+  tibble2data_frame() %>% 
+  prcomp()
+```
+
+```{r}
+list_pca[["p12"]] <- list_pca[["prcomp"]][["x"]] %>% 
+  matrix2tibble(to.row.names = "observations") %>%  
+  mutate(group = groups[observations], .after = "observations") %>% 
+  ggplot(aes(x = PC1, y = PC2, color = group)) +
+  geom_point() +
+  theme_classic() +
+  scale_color_manual(values = Info$freezing_colors) +
+  coord_fixed() + 
+  xlab("PC1") + 
+  ylab("PC2")
+```
+
+
+```{r}
+list_pca[["p12"]] +
+  xlab(paste0(
+    "PC1 (", 
+    round(
+      with(
+        list(x = list_pca[["prcomp"]][["sdev"]]), 
+        x^2 / sum(x^2))[1] * 100, 1), "%)")) + 
+  ylab(
+    paste0(
+      "PC2 (", 
+      round(
+        with(
+          list(x = list_pca[["prcomp"]][["sdev"]]), 
+          x^2 / sum(x^2))[2] * 100, 1), "%)"))
+```
+
+
 ### pOmics3 {-}
 
 ```{r}
-get_data_frame(which = "channel", 
-               variables = , 
-               observations = , 
-               dataset = "protein") %>% 
-  add_observations_data("group", dataset = "protein") %>% 
-  split(.$group) %>% 
-  map(\(x) {
-    x %>% select(-group) %>% 
-      transpose_tibble() %>% 
-      tibble2matrix() %>% 
-      limma::normalizeBetweenArrays(method = "scale") %>% 
-      matrix2tibble("variables") %>% 
-      transpose_tibble()
-  }) %>% 
-  bind_rows() %>% 
-  arrange(match(observations, get_observations(dataset = "protein"))) %>% 
-  save_data_frame("median_grouped", dataset = "protein")
+Analysis[["PCA"]] <- list()
+
+Analysis[["PCA"]][["prcomp"]] <- 
+  get_data_frame(which = "median", 
+                 variables = , 
+                 observations = , 
+                 dataset = "protein") %>% 
+  mutate(across(where(is.numeric), \(x) c(scale(x)))) %>% 
+  tibble2data_frame() %>% 
+  prcomp()
 ```
 
 
-
-### pOmics3 (+ save) {-}
 
 ```{r}
-get_data_frame(which = "channel", 
-               variables = , 
-               observations = , 
-               dataset = "protein") %>% 
-  add_observations_data("group", dataset = "protein") %>% 
-  split(.$group) %>% 
-  map(\(x) {
-    x %>% select(-group) %>% 
-      transpose_tibble() %>% 
-      tibble2matrix() %>% 
-      limma::normalizeBetweenArrays(method = "scale") %>% 
-      matrix2tibble("variables") %>% 
-      transpose_tibble()
-  }) %>% 
-  bind_rows() %>% 
-  arrange(match(observations, get_observations(dataset = "protein"))) %>% 
-  save_data_frame("median_grouped", dataset = "protein")
+Analysis[["PCA"]][["p12"]] <- 
+  (Analysis[["PCA"]][["prcomp"]][["x"]] %>% 
+     matrix2tibble(to.row.names = "observations") %>%  
+     add_observations_data("group", dataset = "protein") %>% 
+     add_observations_data("group2", dataset = "protein") %>% 
+     ggplot(aes(x = PC1, y = PC2, color = group, shape = group2)) +
+     geom_point() +
+     theme_classic() +
+     theme(panel.background = element_rect(color = "black")) +
+     #scale_color_manual(values = Info$color_scheme) +
+     coord_fixed()) %>% 
+  .set_PCA_labs() %>% 
+  .set_continuous_axes(axis.unit.ratio = 1)
 ```
+
+
+### Combined PCA plots
+
+
+```{r}
+wrap_plots(list_pca[["p12"]], Analysis[["PCA"]][["p34"]], guides = "collect")
+```
+
+
+```{r}
+wrap_plots(Analysis[["PCA"]][["p12"]], Analysis[["PCA"]][["p34"]], guides = "collect")
+```
+
+
+### How to get creative
+
+PCA can be used on subsets of samples or on a subset of proteins of interest.
+
+
+
+
+## Differential abundace analysis with limma
+
+
+```{r}
+# limma
+list_limma <- list()
+
+# Make eset from tibble
+list_limma[["eset"]] <- 
+  get_data_frame("median",
+                 variables = , 
+                 observations = ,
+                 dataset = "protein") %>% 
+  mutate(across(where(is.numeric), log2)) %>% 
+  transpose_tibble() %>% 
+  tibble2matrix() %>% 
+  Biobase::ExpressionSet()
+```
+
+
+```{r}
+# Describe experimental groups
+list_limma[["design"]] <- model.matrix(
+  ~0+factor(
+    get_observations_data(
+      which = "group", 
+      observations = ,
+      output.type = "vector", 
+      dataset = "protein"), 
+    levels = c("A", "B", "C"))) # order of groups
+
+colnames(list_limma[["design"]]) <- c("A", "B", "C") # same as levels above
+
+# Do first linear model fit
+list_limma[["fit"]] <- lmFit(list_limma[["eset"]], list_limma[["design"]])
+
+# Describe comparisons (contrasts)
+list_limma[["contrast.matrix"]] <- 
+  makeContrasts(B-A, C-A, B-C, # describe desired comparison
+                levels = list_limma[["design"]])
+
+# Compute contrasts
+list_limma[["fit2"]] <- contrasts.fit(list_limma[["fit"]], list_limma[["contrast.matrix"]])
+
+# Apply empirical bayes statistics
+list_limma[["fit2_eBayes"]] <- eBayes(list_limma[["fit2"]])
+```
+
+
+
+
+
+```{r}
+p.threshold <- 0.05
+fc.threshold.hit <- 1
+
+p.adjust.method <- "BH"
+
+# Tidy up results
+list_limma[["results"]] <- biobroom::tidy.MArrayLM(list_limma[["fit2_eBayes"]]) %>% 
+  # do p-value correction
+  group_by(term) %>% 
+  mutate(p.adjust = p.adjust(p.value, method = p.adjust.method), .after = "p.value") %>% 
+  ungroup()
+# 
+mutate(regulation = "none",
+       regulation = ifelse(p.adjust < p.threshold & estimate >= fc.threshold.hit,
+                           "hit.up",
+                           regulation),
+       regulation = ifelse(p.adjust < p.threshold & estimate <= - fc.threshold.hit,
+                           "hit.down",
+                           regulation)) %>% 
+  split(.$term)
+```
+
+Add candidates if wanted
+```{r}
+
+         # regulation = ifelse(p.value < p.threshold & estimate >= fc.threshold.candidate,
+         #                     "candidate.up",
+         #                     regulation),
+         # regulation = ifelse(p.value < p.threshold & estimate <= - fc.threshold.candidate,
+         #                     "candidate.down",
+         #                     regulation),
+```
+
+Add protein and gene names.
+
+```{r}
+list_limma[["results"]] <- list_limma[["results"]] %>% 
+  rename(variables = gene) %>% 
+  mutate(Protein.name = pull(Info[["Databases"]][["UniProt"]], 
+                             "Protein names", 
+                             "Entry")[variables], 
+         Gene.name = pull(Info[["Databases"]][["UniProt"]], 
+                          "Gene Names", 
+                          "Entry")[variables], 
+         .after = 1) %>% 
+```
+
+
+
+
+
+```{r}
+list_limma[["p"]] <- 
+  names(list_limma[["results"]]) %>% 
+  map(\(x) 
+      ggplot(list_limma[["results"]][[x]], 
+             aes(x = estimate, 
+                 y = -log10(p.value), 
+                 color = regulation, 
+                 Protein.name = Protein.name, 
+                 Gene.name = Gene.name)) +
+        geom_point() +
+        scale_color_manual(values = c(none = "grey", 
+                                      hit.up = "red", 
+                                      hit.down = "blue")) +
+        ggtitle(x))
+
+Analysis[["Liver_total_limma"]] <- list_limma
+```
+
+
+```{r}
+patchwork::wrap_plots(Analysis[["Liver_total_limma"]][["p"]], guides = "collect")
+```
+
+
+
+```{r}
+plotly::ggplotly(Analysis[["Liver_total_limma"]][["p"]][[1]])
+```
+
+
+
+
+
+
 
 
 

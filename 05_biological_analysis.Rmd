@@ -1,0 +1,184 @@
+
+# (PART\*) Biological Interpretation {.unnumbered}
+
+
+
+
+## Databases
+
+
+
+Tip at the beginning: As the download of databases can take some time, consider saving them as an rds file and just load them instead of downloading each time.
+
+```{r}
+## Check if dabases were already downloaded
+if (!file.exists("Data/RData/Databases.rds")) {
+  
+  ## Create entry in Info list
+  Info[["Databases"]] <- list()
+  
+  #### Add all your databases ####
+    
+  ## Save list to rds file
+  saveRDS(Info[["Databases"]], "Data/RData/Databases.rds")
+} else {
+  Info[["Databases"]] <- readRDS("Data/RData/Databases.rds")
+}
+```
+
+
+
+### UniProt
+
+```{r}
+## UniProt
+  Info$Databases$UniProt <- db_download_UniProt()
+```
+
+
+### Gene Ontology (GO) from UniProt
+
+```{r}
+# Extract GOCC
+  Info$Databases$GOCC <- db_UniProt2GO(Info$Databases$UniProt, ontology = "CC")
+  # Remove GO-ID for legibility
+  Info$Databases$GOCC_name <- Info$Databases$GOCC
+  names(Info$Databases$GOCC_name) <- strsplit_keep_first(x = names(Info$Databases$GOCC_name), split = " \\[")
+```
+
+
+### STRING
+
+```{r}
+## STRING
+  Info$Databases$STRING <- db_download_STRING(taxid = 10090)
+  # Translate STRING IDs to UniProt accession
+  Info$Databases$STRING_UniProt <- 
+    db_STRING2UniProt(db_STRING = Info$Databases$STRING, 
+                               db_UniProt = Info$Databases$UniProt)
+```
+
+
+
+### CORUM
+
+```{r}
+## CORUM data
+  download.file("https://mips.helmholtz-muenchen.de/corum/download/releases/current/allComplexes.txt.zip", 
+                destfile = "Data/Corum_allComplexes.txt.zip")
+  
+  Info$Databases$CORUM_allComplexes <- vroom::vroom("Data/Corum_allComplexes.txt.zip") 
+  
+  Info$Databases$CORUM_allComplexes_mouse_long <- Info$Databases$CORUM_allComplexes %>% 
+    filter(Organism == "Mouse") %>% 
+    separate_longer_delim(`subunits(UniProt IDs)`, ";") %>% 
+    mutate(variables = `subunits(UniProt IDs)`, .before = 1)
+  
+  # Add to each dataset
+  for (dataset in get_dataset_names()) {
+    Info$Databases$CORUM_allComplexes_mouse_long %>% 
+      filter(variables %in% get_variables(dataset = dataset)) %>% 
+      group_by(variables) %>% 
+      mutate(across(everything(), \(x) paste(x, collapse = "_;_"))) %>% 
+      save_variables_data("ComplexName", dataset = dataset)
+  }
+  
+  rm(dataset)
+```
+
+
+
+### ComplexPortal
+
+
+```{r}
+  ## ComplexPortal
+  Info[["Databases"]][["ComplexPortal"]] <- vroom::vroom("http://ftp.ebi.ac.uk/pub/databases/intact/complex/current/complextab/10090.tsv")
+  
+  Info[["Databases"]][["ComplexPortal_list"]] <- 
+    Info[["Databases"]][["ComplexPortal"]] %>% 
+    separate_longer_delim(`Identifiers (and stoichiometry) of molecules in complex`, "|") %>% 
+    rename(Proteins = `Identifiers (and stoichiometry) of molecules in complex`) %>% 
+    mutate(Proteins = strsplit_keep_first(Proteins, "\\(")) %>% 
+    db_table2sets("Recommended name", 
+                  "Proteins")
+```
+
+
+
+
+
+## Gene set enrichment analysis
+
+
+### fgsea
+
+
+
+
+
+#### pOmics3+
+
+```{r}
+# Prepare data
+name <- "name"
+rds <- paste0("Data/RData/", name, ".rds")
+stats <- Analysis[["Limma_results"]][["results"]][["B-A"]] %>% 
+  pull(`estimate`, variables)
+pathways <- Info$Databases$GOCC_name
+
+# Run fgsea if not done and save before
+if (!file.exists(rds)) {
+  
+  list_fgsea <- list()
+  
+  # Solubility values
+  list_fgsea[["stats"]] <- stats
+  
+  # fgsea results - GOCC
+  list_fgsea[["fgseaRes"]] <- 
+    fgsea::fgseaMultilevel(pathways = pathways, 
+                           stats = list_fgsea[["stats"]],
+                           minSize = 15,
+                           maxSize = 500)
+  
+  # FGSEA collapsed
+  list_fgsea[["fgseaRes_collapsed"]] <- 
+    fgsea::collapsePathways(
+      fgseaRes = list_fgsea[["fgseaRes"]], 
+      pathways = pathways, 
+      stats = list_fgsea[["stats"]])
+  
+  # Table plot collapsed
+  list_fgsea[["GseaTable_collapsed"]] <- 
+    fgsea_plotGseaTable(n_up = 5, 
+                        n_down = 5, 
+                        pathways = pathways, 
+                        stats = list_fgsea[["stats"]], 
+                        fgseaRes = list_fgsea[["fgseaRes"]][pathway %in% list_fgsea[["fgseaRes_collapsed"]][["mainPathways"]]])
+  
+  # Save list to rds file
+  saveRDS(list_fgsea, rds)
+  # Load previous results
+} else {
+  list_fgsea <- readRDS(rds)
+}
+
+# Save results in Analysis list
+Analysis[[name]] <- list_fgsea
+
+# Remove objects
+rm(list = c("list_fgsea", 
+            "stats", 
+            "pathways", 
+            "name", 
+            "rds"))
+```
+
+
+```{r}
+
+```
+
+
+
